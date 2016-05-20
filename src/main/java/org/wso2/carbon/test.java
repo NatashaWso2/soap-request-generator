@@ -16,8 +16,8 @@
 package org.wso2.carbon;
 
 import org.w3c.dom.Node;
-import org.wso2.carbon.soap.impl.SOAPBody;
 import org.wso2.carbon.soap.impl.SOAPFactory;
+import org.wso2.carbon.soap.impl.NodeList;
 
 public class test {
 
@@ -26,7 +26,35 @@ public class test {
 
         SOAPFactory soapFactory = new SOAPFactory();
         soapFactory.createSOAPEnvelope();
-        soapFactory.createSOAPHeader(soapFactory.createNode("<ns1:header xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:header>"));
+        soapFactory.createSOAPHeader();
+       /* soapFactory.createSOAPHeader(soapFactory.createNode("<ns1:header xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEader</TestPart></ns1:header>"));
+        soapFactory.createSOAPHeader(soapFactory.createNode("<ns1:header xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEader2</TestPart></ns1:header>"));
+*/
+
+        //Adding nodes to the header element
+        Node node = soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
+        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(node);
+
+        Node nodee = soapFactory.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
+        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(nodee);
+
+
+       /* NodeList nodeList = new NodeList();
+        nodeList.addNode(node);
+        nodeList.addNode(nodee);
+
+        soapFactory.getSoapEnvelope().getSoapHeader().setHeaders(nodeList);*/
+
+
+        //Deleting a header block
+       //soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(1);
+       // soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(nodee);
+
+        //Get header block
+       // System.out.println(soapFactory.getSoapEnvelope().getSoapHeader().getAllHeaders().item(0));
+
+
+
 
 
         //ONE way of adding a node
@@ -38,10 +66,10 @@ public class test {
 
         // ANOTHER way of adding a node
         soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>"));
-     //   System.out.println(soapFactory.generateSOAPEnvelope().asString());
+        //   System.out.println(soapFactory.generateSOAPEnvelope().asString());
 
         /////////
-     //   soapFactory.getSoapEnvelope().getSoapHeader().deletePayload();
+        // soapFactory.getSoapEnvelope().getSoapHeader().deletePayload();
 
         //Another way of adding a node
            /* soapFactory.createSOAPBody();
@@ -55,7 +83,7 @@ public class test {
             System.out.println();*/
 
 
-       // soapFactory.createSOAPHeader();
+        // soapFactory.createSOAPHeader();
 
        /* System.out.println(soapFactory.getSoapEnvelope().getSoapBody().asString());*/
         System.out.println(" -- ENVELOPE 11111111111111111111111111--");
@@ -63,11 +91,16 @@ public class test {
 
         System.out.println(soapFactory.generateSOAPEnvelope().asString());
 
+        //Deleting a node and adding a new node
        /* System.out.println("**** After deleting a node **");
         soapFactory.getSoapEnvelope().getSoapBody().deletePayload();
+        System.out.println(soapFactory.generateSOAPEnvelope().asString());
+
+        soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Your</TestPart></ns1:hello>"));
+
         System.out.println(soapFactory.generateSOAPEnvelope().asString());*/
 
-          //  System.out.println(soapFactory.getSoapEnvelope().getSoapBody().asString());
+        //  System.out.println(soapFactory.getSoapEnvelope().getSoapBody().asString());
 
           /*  System.out.println("Add node again----------");
             soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Your</TestPart></ns1:hello>"));

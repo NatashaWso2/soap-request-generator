@@ -17,7 +17,7 @@ package org.wso2.carbon.soap.impl;
 
 import org.w3c.dom.Element;
 
-public class ElementImpl implements ElementI {
+public class ElementImpl {
 
     Element element;
 

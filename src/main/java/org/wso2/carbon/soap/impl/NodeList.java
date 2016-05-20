@@ -15,9 +15,25 @@
  */
 package org.wso2.carbon.soap.impl;
 
-import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
-public interface ElementI {
+import java.util.ArrayList;
+import java.util.List;
 
-    void setElement(Element soapBodyElement);
+public class NodeList implements org.w3c.dom.NodeList {
+    List<Node> nodeList = new ArrayList<Node>();
+    @Override
+    public Node item(int index) {
+        return nodeList.get(index);
+    }
+
+    @Override
+    public int getLength() {
+        return nodeList.size();
+    }
+
+    public void addNode(Node node) {
+        nodeList.add(node);
+    }
+
 }

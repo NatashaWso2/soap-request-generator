@@ -15,8 +15,7 @@
  */
 package org.wso2.carbon.soap.impl;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import org.w3c.dom.*;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -51,25 +50,42 @@ public class SOAPHeader extends ElementImpl {
         this.soapHeaderElement = soapHeaderElement;
     }
 
-    public Node getPayload() {
+    // NODE
+    public Node getHeader(int index) {
         return soapHeaderElement.getFirstChild();
     }
 
-    public void setPayload(Node payload) {
+    public void setHeader(Node header) {
 
-        soapHeaderElement.appendChild(payload);
+        soapHeaderElement.appendChild(header);
     }
 
-  /*  public void setPayload(Node[] payload) {
+    // NODE LIST
 
-        soapHeaderElement.appendChild(payload);
-    }*/
+    // NODE
+    public NodeList getAllHeaders() {
+        org.w3c.dom.NodeList list = soapHeaderElement.getChildNodes();
+        NodeList nodes = new NodeList();
+        for (int i = 0; i < list.getLength(); i++) {
+            Node n = list.item(i);
+            nodes.addNode(n);
+        }
+        return nodes;
+    }
 
-    public void deletePayload() {
+    public void setHeaders(NodeList headers) {
+        for (int i = 0; i < headers.getLength(); i++) {
+            Node n = headers.item(i);
+            setHeader(n);
+        }
+    }
 
-        soapHeaderElement.removeChild(soapHeaderElement.getFirstChild());
+    public void deleteHeaders(Node node) {
+        soapHeaderElement.removeChild(node);
+    }
 
-
+    public void deleteHeaders(int index) {
+        soapHeaderElement.removeChild(soapHeaderElement.getChildNodes().item(index));
     }
 
     public String asString() {

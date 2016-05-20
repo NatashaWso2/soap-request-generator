@@ -70,8 +70,8 @@ public class SOAPEnvelope extends ElementImpl {
 
     public void setSoapHeader(SOAPHeader soapHeader) {
         //soapEnvelopeElement.appendChild(soapHeader.getSoapHeaderElement());
-        if(soapBody != null){
-            soapEnvelopeElement.insertBefore(soapHeader.getSoapHeaderElement(),soapEnvelopeElement.getFirstChild());
+        if (soapBody != null) {
+            soapEnvelopeElement.insertBefore(soapHeader.getSoapHeaderElement(), soapEnvelopeElement.getFirstChild());
         } else {
             soapEnvelopeElement.appendChild(soapHeader.getSoapHeaderElement());
         }

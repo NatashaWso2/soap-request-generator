@@ -146,7 +146,7 @@ public class SOAPFactory extends ElementImpl {
                 envelope.setSoapBody(soapBody);
             }
         } else {
-           throw new SOAPException("No SOAP Envelope created!!!");
+            throw new SOAPException("No SOAP Envelope created!!!");
         }
 
         return soapBody;
@@ -226,7 +226,7 @@ public class SOAPFactory extends ElementImpl {
 
     }
 
-    public SOAPHeader createSOAPHeader(Node payload) throws SOAPException {
+    public SOAPHeader createSOAPHeader(Node header) throws SOAPException {
 
         String soapVersion = "soap11";
         String namespaceURI = null;
@@ -240,18 +240,57 @@ public class SOAPFactory extends ElementImpl {
         if (envelope != null) {
             if (envelope.getSoapHeader() == null) {
 
-                Element bodyElement = doc.createElementNS(namespaceURI, Constants.HEADER);
-                bodyElement.setPrefix(Constants.SOAP_NAMESPACE_PREFIX);
+                Element headerElement = doc.createElementNS(namespaceURI, Constants.HEADER);
+                headerElement.setPrefix(Constants.SOAP_NAMESPACE_PREFIX);
 
-                //soapBody.setSoapBodyElement(bodyElement);
-                soapHeader = new SOAPHeader(bodyElement);
-                soapHeader.setPayload(payload);
+                //soapBody.setSoapBodyElement(headerElement);
+                soapHeader = new SOAPHeader(headerElement);
+                soapHeader.setHeader(header);
 
-                bodyElement.appendChild(payload);
+                headerElement.appendChild(header);
                 envelope.setSoapHeader(soapHeader);
             } else {
                 soapHeader = envelope.getSoapHeader();
-                soapHeader.setPayload(payload);
+                soapHeader.setHeader(header);
+
+                envelope.setSoapHeader(soapHeader);
+            }
+        } else {
+            throw new SOAPException("No SOAP Envelope created!!!");
+        }
+        return soapHeader;
+
+    }
+
+    public SOAPHeader createSOAPHeader(NodeList headers) throws SOAPException {
+
+        String soapVersion = "soap11";
+        String namespaceURI = null;
+        SOAPHeader soapHeader = null;
+        if (soapVersion.equals(Constants.SOAP11_VERSION)) {
+            namespaceURI = SOAP11Constants.SOAP_ENVELOPE_NAMESPACE_URI;
+        } else {
+            namespaceURI = SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI;
+        }
+        //Creates the main SOAP Body Element
+        if (envelope != null) {
+            if (envelope.getSoapHeader() == null) {
+
+                Element headerElement = doc.createElementNS(namespaceURI, Constants.HEADER);
+                headerElement.setPrefix(Constants.SOAP_NAMESPACE_PREFIX);
+
+                //soapBody.setSoapBodyElement(headerElement);
+                soapHeader = new SOAPHeader(headerElement);
+                soapHeader.setHeaders(headers);
+                for (int i = 0; i < headers.getLength(); i++) {
+                    Node n = headers.item(i);
+                    headerElement.appendChild(n);
+                }
+
+                envelope.setSoapHeader(soapHeader);
+            } else {
+                soapHeader = envelope.getSoapHeader();
+                soapHeader.setHeaders(headers);
 
                 envelope.setSoapHeader(soapHeader);
             }
