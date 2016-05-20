@@ -17,14 +17,27 @@ package org.wso2.carbon.soap.impl;
 
 import org.w3c.dom.Element;
 
+/**
+ * Represents an XML element of the DOM
+ */
 public class ElementImpl {
 
     Element element;
 
+    /**
+     * Gets the element from the document
+     *
+     * @return element
+     */
     public Element getElement() {
         return element;
     }
 
+    /**
+     * Sets the element to the document
+     *
+     * @param element
+     */
     public void setElement(Element element) {
         this.element = element;
     }

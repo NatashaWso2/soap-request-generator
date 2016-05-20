@@ -15,6 +15,9 @@
  */
 package org.wso2.carbon.soap.impl;
 
+/**
+ * Exception class to catch SOAP exceptions
+ */
 public class SOAPException extends Exception {
 
     public SOAPException(String msg, Exception e) {

@@ -42,29 +42,47 @@ public class SOAPBody extends ElementImpl {
         this.soapBodyElement = soapBodyElement;
     }
 
+    /**
+     * Gets the SOAP Body element
+     *
+     * @return SOAP Body element
+     */
     public Element getSoapBodyElement() {
 
         return soapBodyElement;
     }
 
+    /**
+     * Sets the SOAP Body element
+     *
+     * @param soapBodyElement
+     */
     public void setSoapBodyElement(Element soapBodyElement) {
         this.soapBodyElement = soapBodyElement;
     }
 
+    /**
+     * Gets the payload of the SOAP Body
+     *
+     * @return the payload
+     */
     public Node getPayload() {
         return soapBodyElement.getFirstChild();
     }
 
+    /**
+     * Sets the payload to SOAP Body
+     *
+     * @param payload
+     */
     public void setPayload(Node payload) {
 
         soapBodyElement.appendChild(payload);
     }
 
-  /*  public void setPayload(Node[] payload) {
-
-        soapBodyElement.appendChild(payload);
-    }*/
-
+    /**
+     * Deletes the payload from the SOAP Body
+     */
     public void deletePayload() {
 
         soapBodyElement.removeChild(soapBodyElement.getFirstChild());
@@ -72,6 +90,11 @@ public class SOAPBody extends ElementImpl {
 
     }
 
+    /**
+     * Returns the SOAP Body as a string
+     *
+     * @return SOAP Body as a string
+     */
     public String asString() {
         String str = null;
         Transformer serializer = null;

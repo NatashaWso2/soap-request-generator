@@ -17,9 +17,6 @@ package org.wso2.carbon.soap.impl;
 
 import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -42,34 +39,62 @@ public class SOAPEnvelope extends ElementImpl {
 
     }
 
+    /**
+     * Gets the SOAP Envelope element
+     *
+     * @return SOAP Envelope element
+     */
     public Element getSoapEnvelopeElement() {
         return soapEnvelopeElement;
     }
 
+    /**
+     * Sets the SOAP Envelope element
+     *
+     * @param soapEnvelopeElement
+     */
     public void setSoapEnvelopeElement(Element soapEnvelopeElement) {
 
         this.soapEnvelopeElement = soapEnvelopeElement;
     }
 
-    //SOAP Body
+    /**
+     * Gets the SOAP Body element from the SOAP Envelope
+     *
+     * @return SOAP Body
+     */
     public SOAPBody getSoapBody() {
 
         return soapBody;
     }
 
+    /**
+     * Sets the SOAP Body element to the SOAP Envelope
+     *
+     * @param soapBody
+     */
     public void setSoapBody(SOAPBody soapBody) {
         soapEnvelopeElement.appendChild(soapBody.getSoapBodyElement());
         this.soapBody = soapBody;
     }
 
-    //SOAP Header
+    /**
+     * Gets the SOAP Header element from the SOAP Envelope
+     *
+     * @return SOAP Header
+     */
     public SOAPHeader getSoapHeader() {
 
         return soapHeader;
     }
 
+    /**
+     * Sets the SOAP Header element to the SOAP Envelope
+     *
+     * @param soapHeader
+     */
     public void setSoapHeader(SOAPHeader soapHeader) {
-        //soapEnvelopeElement.appendChild(soapHeader.getSoapHeaderElement());
+
         if (soapBody != null) {
             soapEnvelopeElement.insertBefore(soapHeader.getSoapHeaderElement(), soapEnvelopeElement.getFirstChild());
         } else {
@@ -80,24 +105,10 @@ public class SOAPEnvelope extends ElementImpl {
 
 
     /**
-     * Creates the documentBuilder object used to create the xml document i.e. the SOAP Envelope
+     * Returns the SOAP Envelope as a string
      *
-     * @return documentBuilder
-     * @throws Exception
+     * @return SOAP Envelope as a string
      */
-    public DocumentBuilder createDocumentBuilder() throws SOAPException {
-        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = null;
-        try {
-            docBuilder = docFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException pce) {
-            throw new SOAPException("Configuration Error", pce);
-        }
-        docFactory.setNamespaceAware(true);
-
-        return docBuilder;
-    }
-
     public String asString() {
         String str = null;
         Transformer serializer = null;

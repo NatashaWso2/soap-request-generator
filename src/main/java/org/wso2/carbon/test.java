@@ -16,8 +16,8 @@
 package org.wso2.carbon;
 
 import org.w3c.dom.Node;
-import org.wso2.carbon.soap.impl.SOAPFactory;
 import org.wso2.carbon.soap.impl.NodeList;
+import org.wso2.carbon.soap.impl.SOAPFactory;
 
 public class test {
 
@@ -33,28 +33,25 @@ public class test {
 
         //Adding nodes to the header element
         Node node = soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
-        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(node);
+        // soapFactory.getSoapEnvelope().getSoapHeader().setHeader(node);
 
         Node nodee = soapFactory.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
-        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(nodee);
+        // soapFactory.getSoapEnvelope().getSoapHeader().setHeader(nodee);
 
 
-       /* NodeList nodeList = new NodeList();
+        NodeList nodeList = new NodeList();
         nodeList.addNode(node);
         nodeList.addNode(nodee);
 
-        soapFactory.getSoapEnvelope().getSoapHeader().setHeaders(nodeList);*/
+        soapFactory.getSoapEnvelope().getSoapHeader().setHeaders(nodeList);
 
 
         //Deleting a header block
-       //soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(1);
-       // soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(nodee);
+        //soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(1);
+        // soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(nodee);
 
         //Get header block
-       // System.out.println(soapFactory.getSoapEnvelope().getSoapHeader().getAllHeaders().item(0));
-
-
-
+        // System.out.println(soapFactory.getSoapEnvelope().getSoapHeader().getAllHeaders().item(0));
 
 
         //ONE way of adding a node
@@ -68,8 +65,6 @@ public class test {
         soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>"));
         //   System.out.println(soapFactory.generateSOAPEnvelope().asString());
 
-        /////////
-        // soapFactory.getSoapEnvelope().getSoapHeader().deletePayload();
 
         //Another way of adding a node
            /* soapFactory.createSOAPBody();
@@ -84,7 +79,7 @@ public class test {
 
 
         // soapFactory.createSOAPHeader();
-
+        soapFactory.getSoapEnvelope().getSoapBody().deletePayload();
        /* System.out.println(soapFactory.getSoapEnvelope().getSoapBody().asString());*/
         System.out.println(" -- ENVELOPE 11111111111111111111111111--");
 

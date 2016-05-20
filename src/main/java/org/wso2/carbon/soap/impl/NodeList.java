@@ -20,18 +20,38 @@ import org.w3c.dom.Node;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implements the NodeList to store nodes
+ */
 public class NodeList implements org.w3c.dom.NodeList {
     List<Node> nodeList = new ArrayList<Node>();
+
+    /**
+     * Gets the node at the given index
+     *
+     * @param index
+     * @return node
+     */
     @Override
     public Node item(int index) {
         return nodeList.get(index);
     }
 
+    /**
+     * Gets the size of the NodeList
+     *
+     * @return length/size
+     */
     @Override
     public int getLength() {
         return nodeList.size();
     }
 
+    /**
+     * Add a node to the NodeList
+     *
+     * @param node
+     */
     public void addNode(Node node) {
         nodeList.add(node);
     }

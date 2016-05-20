@@ -31,6 +31,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 
+/**
+ * Factory used to invoke all the methods
+ */
 public class SOAPFactory extends ElementImpl {
 
     private SOAPEnvelope envelope;
@@ -44,6 +47,12 @@ public class SOAPFactory extends ElementImpl {
         doc = docBuilder.newDocument();
     }
 
+    /**
+     * Creates the Document Builder object
+     *
+     * @return documentbuilder
+     * @throws SOAPException
+     */
     private DocumentBuilder createDocumentBuilder() throws SOAPException {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = null;
@@ -57,7 +66,12 @@ public class SOAPFactory extends ElementImpl {
         return docBuilder;
     }
 
-    //Create the SOAP Envelope Element
+    /**
+     * Creates the SOAP Envelope
+     *
+     * @return SOAP Envelope
+     * @throws SOAPException
+     */
     public SOAPEnvelope createSOAPEnvelope() throws SOAPException {
 
         String soapVersion = "soap11";
@@ -85,7 +99,12 @@ public class SOAPFactory extends ElementImpl {
         return envelope;
     }
 
-    //Generate the soap envelope
+    /**
+     * Generates the entire SOAP Request/Envelope
+     *
+     * @return SOAP Request/Envelope
+     * @throws SOAPException
+     */
     public SOAPEnvelope generateSOAPEnvelope() throws SOAPException {
         envelope = getSoapEnvelope();
 
@@ -106,6 +125,13 @@ public class SOAPFactory extends ElementImpl {
         return envelope;
     }
 
+    /**
+     * Creates the node object when attaching elements to the SOAP Body and Header
+     *
+     * @param payload
+     * @return node
+     * @throws SOAPException
+     */
     public Node createNode(String payload) throws SOAPException {
         Node fragmentNode = null;
         try {
@@ -121,7 +147,12 @@ public class SOAPFactory extends ElementImpl {
 
     }
 
-
+    /**
+     * Creates the SOAP Body without elements
+     *
+     * @return SOAP Body
+     * @throws SOAPException
+     */
     public SOAPBody createSOAPBody() throws SOAPException {
 
         String soapVersion = "soap11";
@@ -153,6 +184,13 @@ public class SOAPFactory extends ElementImpl {
 
     }
 
+    /**
+     * Creates the SOAP Body by attaching the payload
+     *
+     * @param payload element/request payload to be attached
+     * @return SOAP Body
+     * @throws SOAPException
+     */
     public SOAPBody createSOAPBody(Node payload) throws SOAPException {
 
         String soapVersion = "soap11";
@@ -189,12 +227,22 @@ public class SOAPFactory extends ElementImpl {
 
     }
 
+    /**
+     * Gets the SOAP Envelope
+     *
+     * @return SOAP Envelope
+     */
     public SOAPEnvelope getSoapEnvelope() {
         return envelope;
     }
 
 
-    //Header
+    /**
+     * Creates the SOAP Header without elements
+     *
+     * @return SOAP Header
+     * @throws SOAPException
+     */
     public SOAPHeader createSOAPHeader() throws SOAPException {
 
         String soapVersion = "soap11";
@@ -226,6 +274,13 @@ public class SOAPFactory extends ElementImpl {
 
     }
 
+    /**
+     * Creates the SOAP Header by attaching the header
+     *
+     * @param header
+     * @return SOAP Header
+     * @throws SOAPException
+     */
     public SOAPHeader createSOAPHeader(Node header) throws SOAPException {
 
         String soapVersion = "soap11";
@@ -243,7 +298,6 @@ public class SOAPFactory extends ElementImpl {
                 Element headerElement = doc.createElementNS(namespaceURI, Constants.HEADER);
                 headerElement.setPrefix(Constants.SOAP_NAMESPACE_PREFIX);
 
-                //soapBody.setSoapBodyElement(headerElement);
                 soapHeader = new SOAPHeader(headerElement);
                 soapHeader.setHeader(header);
 
@@ -262,6 +316,13 @@ public class SOAPFactory extends ElementImpl {
 
     }
 
+    /**
+     * Creates the SOAP Header by attaching the header blocks
+     *
+     * @param headers
+     * @return SOAP Header
+     * @throws SOAPException
+     */
     public SOAPHeader createSOAPHeader(NodeList headers) throws SOAPException {
 
         String soapVersion = "soap11";

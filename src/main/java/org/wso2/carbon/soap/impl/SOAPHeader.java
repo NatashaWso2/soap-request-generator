@@ -15,7 +15,8 @@
  */
 package org.wso2.carbon.soap.impl;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -41,28 +42,50 @@ public class SOAPHeader extends ElementImpl {
         this.soapHeaderElement = soapHeaderElement;
     }
 
+    /**
+     * Gets the SOAP Header element
+     *
+     * @return SOAP Header element
+     */
     public Element getSoapHeaderElement() {
 
         return soapHeaderElement;
     }
 
+    /**
+     * Sets the SOAP Header element
+     *
+     * @param soapHeaderElement
+     */
     public void setSoapHeaderElement(Element soapHeaderElement) {
         this.soapHeaderElement = soapHeaderElement;
     }
 
-    // NODE
+    /**
+     * Gets the header at the specified index
+     *
+     * @param index
+     * @return header at the specified index
+     */
     public Node getHeader(int index) {
         return soapHeaderElement.getFirstChild();
     }
 
+    /**
+     * Sets the header to the SOAP Header
+     *
+     * @param header
+     */
     public void setHeader(Node header) {
 
         soapHeaderElement.appendChild(header);
     }
 
-    // NODE LIST
-
-    // NODE
+    /**
+     * Get all the headers i.e. all the header blocks from the SOAP Header
+     *
+     * @return nodeList with all the headers
+     */
     public NodeList getAllHeaders() {
         org.w3c.dom.NodeList list = soapHeaderElement.getChildNodes();
         NodeList nodes = new NodeList();
@@ -73,6 +96,11 @@ public class SOAPHeader extends ElementImpl {
         return nodes;
     }
 
+    /**
+     * Sets the headers to the SOAP Header
+     *
+     * @param headers
+     */
     public void setHeaders(NodeList headers) {
         for (int i = 0; i < headers.getLength(); i++) {
             Node n = headers.item(i);
@@ -80,14 +108,29 @@ public class SOAPHeader extends ElementImpl {
         }
     }
 
+    /**
+     * Deletes the specified header
+     *
+     * @param node
+     */
     public void deleteHeaders(Node node) {
         soapHeaderElement.removeChild(node);
     }
 
+    /**
+     * Deletes the header at the specified index
+     *
+     * @param index
+     */
     public void deleteHeaders(int index) {
         soapHeaderElement.removeChild(soapHeaderElement.getChildNodes().item(index));
     }
 
+    /**
+     * Returns the SOAP Header as a string
+     *
+     * @return SOAP Header as a string
+     */
     public String asString() {
         String str = null;
         Transformer serializer = null;
