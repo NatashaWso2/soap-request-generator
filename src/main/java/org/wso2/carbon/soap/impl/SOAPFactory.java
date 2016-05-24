@@ -41,8 +41,8 @@ public class SOAPFactory extends ElementImpl {
     private Document doc;
 
 
-    public SOAPFactory() throws Exception {
-        envelope = new SOAPEnvelope();
+    public SOAPFactory() throws SOAPException {
+        envelope = new SOAPEnvelope(this);
         docBuilder = createDocumentBuilder();
         doc = docBuilder.newDocument();
     }
@@ -57,11 +57,12 @@ public class SOAPFactory extends ElementImpl {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = null;
         try {
+            docFactory.setNamespaceAware(true);
             docBuilder = docFactory.newDocumentBuilder();
         } catch (ParserConfigurationException pce) {
             throw new SOAPException("Configuration Error", pce);
         }
-        docFactory.setNamespaceAware(true);
+
 
         return docBuilder;
     }
@@ -360,6 +361,40 @@ public class SOAPFactory extends ElementImpl {
         }
         return soapHeader;
 
+    }
+
+    /**
+     *  Creating the SOAP Envelope when a string is given
+     * @param messageBody
+     * @return SOAP Envelope
+     * @throws SOAPException
+     * @throws IOException
+     * @throws SAXException
+     */
+    public SOAPEnvelope createSOAPEnvelope(String messageBody) throws SOAPException, IOException, SAXException {
+        doc = docBuilder.parse(new InputSource(new StringReader(messageBody)));
+
+        Element rootElement = doc.getDocumentElement();
+        envelope.setSoapEnvelopeElement(rootElement);
+
+        org.w3c.dom.NodeList children = rootElement.getChildNodes();
+        Node current = null;
+        int count = children.getLength();
+        for (int i = 0; i < count; i++) {
+            current = children.item(i);
+            Element element = (Element) current;
+
+            if (element.getLocalName().equalsIgnoreCase("Header")) {
+                SOAPHeader soapHeader = new SOAPHeader(element);
+                envelope.setSoapHeader(soapHeader);
+            } else if (element.getLocalName().equalsIgnoreCase("Body")) {
+                SOAPBody soapBody = new SOAPBody(element);
+                envelope.setSoapBody(soapBody);
+            }
+
+        }
+
+        return envelope;
     }
 
 

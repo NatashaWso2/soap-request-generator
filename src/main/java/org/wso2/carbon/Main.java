@@ -16,8 +16,13 @@
 package org.wso2.carbon;
 
 import org.w3c.dom.Node;
+import org.wso2.carbon.soap.impl.HeaderProperties;
 import org.wso2.carbon.soap.impl.NodeList;
 import org.wso2.carbon.soap.impl.SOAPFactory;
+
+import java.nio.ByteBuffer;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Main {
 
@@ -84,5 +89,27 @@ public class Main {
 
 
         System.out.println(soapFactory.generateSOAPEnvelope().asString());
+
+        //Header properties
+      /*  HeaderProperties headerProperties = new HeaderProperties();
+        headerProperties.addHeader("abc", "1");
+        headerProperties.addSOAPAction("method1");
+        Map map = headerProperties.getHeaders();
+        Iterator iterator = map.keySet().iterator();
+
+        while (iterator.hasNext()) {
+            String key = iterator.next().toString();
+            String value = (String) map.get(key);
+
+            System.out.println(key + " " + value);
+        }*/
+
+        /*String content = "It's easy to convert ByteBuffer to String in Java";
+        ByteBuffer buffer = ByteBuffer.wrap(content.getBytes("UTF-8")); // Now let's convert this ByteBuffer to String String converted = new String(buffer.array(), "UTF-8"); System.out.println("Original : " + content); System.out.println("Converted : " + converted);
+        String converted = new String(buffer.array(), "UTF-8");
+        System.out.println("Original : " + content);
+        System.out.println("Converted : " + converted);*/
+
+
     }
 }

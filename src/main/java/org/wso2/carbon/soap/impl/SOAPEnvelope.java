@@ -34,9 +34,15 @@ public class SOAPEnvelope extends ElementImpl {
     SOAPBody soapBody;
     Element soapEnvelopeElement;
     SOAPHeader soapHeader;
+    SOAPFactory soapFactory;
 
-    public SOAPEnvelope() throws SOAPException {
 
+    public SOAPEnvelope(SOAPFactory soapFactory) throws SOAPException {
+        this.soapFactory = soapFactory;
+    }
+
+    public SOAPFactory getSoapFactory() {
+        return soapFactory;
     }
 
     /**
@@ -95,14 +101,13 @@ public class SOAPEnvelope extends ElementImpl {
      */
     public void setSoapHeader(SOAPHeader soapHeader) {
 
-        if (soapBody != null) {
+        if (soapBody != null ||  this.soapHeader == null ) {
             soapEnvelopeElement.insertBefore(soapHeader.getSoapHeaderElement(), soapEnvelopeElement.getFirstChild());
         } else {
             soapEnvelopeElement.appendChild(soapHeader.getSoapHeaderElement());
         }
         this.soapHeader = soapHeader;
     }
-
 
     /**
      * Returns the SOAP Envelope as a string

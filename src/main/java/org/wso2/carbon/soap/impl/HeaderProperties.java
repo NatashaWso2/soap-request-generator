@@ -19,33 +19,49 @@ import org.wso2.carbon.soap.constants.Constants;
 import org.wso2.carbon.soap.constants.SOAP11Constants;
 import org.wso2.carbon.soap.constants.SOAP12Constants;
 
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Defines the transport binding rules specific to each soap version
  */
 public class HeaderProperties {
+    private Map<String, String> headers = new ConcurrentHashMap<String, String>();
+
     /**
      * Sets the transport binding rules specific to each soap version
      *
      * @return properties which contains transport binding rules
      * @throws Exception
      */
-    public Properties setHeaderProperties() throws Exception {
-        Properties properties = new Properties();
+    public HeaderProperties() {
         String soapVersion = "soap11";
-        //
-        if (soapVersion.equals(Constants.SOAP11_VERSION)) {
-            properties.setProperty("Content-Type", SOAP11Constants.SOAP11_CONTENT_TYPE);
-            properties.setProperty("Content-Length", "");
-            properties.setProperty("SOAPAction", ""); //mandatory
-        } else {
-            properties.setProperty("Content-Type", SOAP12Constants.SOAP12_CONTENT_TYPE);
-            properties.setProperty("Content-Length", "");
-            /*properties.setProperty("SOAPAction", ""); //optional*/
-        }
-        return properties;
 
+        if (soapVersion.equals(Constants.SOAP11_VERSION)) {
+            headers.put("Content-Type", SOAP11Constants.SOAP11_CONTENT_TYPE);
+            headers.put("SOAPAction", ""); //Mandatory
+        } else {
+            headers.put("Content-Type", SOAP12Constants.SOAP12_CONTENT_TYPE);
+            headers.put("SOAPAction", ""); //Optional
+        }
+
+    }
+
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
+
+    public void setHeaders(Map<String, String> headers) {
+        this.headers = headers;
+    }
+
+    public void addHeader(String key, String value){
+        headers.put(key, value);
+    }
+
+    public void addSOAPAction(String soapAction){
+        headers.put("SOAPAction", soapAction);
     }
 
 }
