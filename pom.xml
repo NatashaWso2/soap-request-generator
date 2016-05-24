@@ -74,10 +74,17 @@
             <version>${carbon.messaging.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.wso2.carbon.transport</groupId>
+            <artifactId>org.wso2.carbon.transport.http.netty</artifactId>
+            <version>${carbon.transport.version}</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
         <carbon.messaging.version>1.0.4-SNAPSHOT</carbon.messaging.version>
+        <carbon.transport.version>2.1.1-SNAPSHOT</carbon.transport.version>
     </properties>
 
 
