@@ -49,8 +49,8 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
     /**
      * Set the Header properties
      */
-    public void setHeaderProperties(HeaderProperties headerProperties) {
-        setHeaders(headerProperties.getHeaders());
+    public void setHeaderProperties(HTTPTransportHeaders HTTPTransportHeaders) {
+        setHeaders(HTTPTransportHeaders.getHeaders());
     }
 
 

@@ -19,18 +19,15 @@ import org.w3c.dom.Node;
 import org.wso2.carbon.messaging.CarbonCallback;
 import org.wso2.carbon.messaging.CarbonMessage;
 import org.wso2.carbon.messaging.Constants;
-import org.wso2.carbon.messaging.DefaultCarbonMessage;
 import org.wso2.carbon.messaging.MessageProcessorException;
 import org.wso2.carbon.soap.impl.CarbonSOAPMessage;
-import org.wso2.carbon.soap.impl.HeaderProperties;
+import org.wso2.carbon.soap.impl.HTTPTransportHeaders;
 import org.wso2.carbon.soap.impl.NodeList;
 import org.wso2.carbon.soap.impl.SOAPEnvelope;
 import org.wso2.carbon.soap.impl.SOAPException;
 import org.wso2.carbon.soap.impl.SOAPFactory;
 import org.wso2.carbon.transport.http.netty.config.SenderConfiguration;
 import org.wso2.carbon.transport.http.netty.sender.NettySender;
-
-import java.io.UnsupportedEncodingException;
 
 /**
  * Transport Sender for SOAP using netty
@@ -67,13 +64,13 @@ public class SoapTransportSender {
         // Setting the SOAP Envelope
         carbonSOAPMessage.setSOAPEnvelope(soapEnvelope);
 
-        HeaderProperties headerProperties = new HeaderProperties();
+        HTTPTransportHeaders httpTransportHeaders = new HTTPTransportHeaders();
         //User should add these
-        headerProperties.addHeader(Constants.HTTP_CONNECTION, Constants.KEEP_ALIVE);
-        headerProperties.addHeader(Constants.HTTP_HOST, "localhost:9764");
-        headerProperties.addHeader(Constants.HTTP_TRANSFER_ENCODING, "chunked");
+        httpTransportHeaders.addHeader(Constants.HTTP_CONNECTION, Constants.KEEP_ALIVE);
+        httpTransportHeaders.addHeader(Constants.HTTP_HOST, "localhost:9764");
+        httpTransportHeaders.addHeader(Constants.HTTP_TRANSFER_ENCODING, "chunked");
 
-        carbonSOAPMessage.setHeaderProperties(headerProperties);
+        carbonSOAPMessage.setHeaderProperties(httpTransportHeaders);
 
         try {
             nettySender.send(carbonSOAPMessage, new CarbonCallback() {

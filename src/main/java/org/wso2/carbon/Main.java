@@ -16,13 +16,8 @@
 package org.wso2.carbon;
 
 import org.w3c.dom.Node;
-import org.wso2.carbon.soap.impl.HeaderProperties;
 import org.wso2.carbon.soap.impl.NodeList;
 import org.wso2.carbon.soap.impl.SOAPFactory;
-
-import java.nio.ByteBuffer;
-import java.util.Iterator;
-import java.util.Map;
 
 public class Main {
 
@@ -98,7 +93,7 @@ public class Main {
 
 
         //Header properties
-      /*  HeaderProperties headerProperties = new HeaderProperties();
+      /*  HTTPTransportHeaders headerProperties = new HTTPTransportHeaders();
         headerProperties.addHeader("abc", "1");
         headerProperties.addSOAPAction("method1");
         Map map = headerProperties.getHeaders();
