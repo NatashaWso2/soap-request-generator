@@ -29,7 +29,7 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
      * @param soapEnvelope
      */
     public void setSOAPEnvelope(SOAPEnvelope soapEnvelope) {
-        String stringMessageBody = soapEnvelope.asString();
+        String stringMessageBody = soapEnvelope.toString();
         addMessageBody(ByteBuffer.wrap(stringMessageBody.getBytes(Charset.defaultCharset())));
         setEndOfMsgAdded(true);
     }

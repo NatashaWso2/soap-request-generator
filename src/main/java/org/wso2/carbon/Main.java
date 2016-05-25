@@ -83,7 +83,7 @@ public class Main {
 
         //Creating the soap envelope when a string message body is given ----------------------
        /* soapFactory.createSOAPEnvelope("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><soapenv:Header><ns1:hello xmlns:ns1=\"http://ode/bpel/unit-test.wsdl\"><TestPart>HEADER11</TestPart></ns1:hello><ns2:h xmlns:ns2=\"http://ode/bpel/unit-test.wsdl\"><TestPart>HEADER22</TestPart></ns2:h></soapenv:Header><soapenv:Body><ns1:hello xmlns:ns1=\"http://ode/bpel/unit-test.wsdl\"><TestPart>Mellow</TestPart></ns1:hello></soapenv:Body></soapenv:Envelope>\n");
-        System.out.println(soapFactory.getSoapEnvelope().asString());*/
+        System.out.println(soapFactory.getSoapEnvelope().toString());*/
 
         //Deleting the payload
         // soapFactory.getSoapEnvelope().getSoapBody().deletePayload();
@@ -92,7 +92,7 @@ public class Main {
         //soapFactory.getSoapEnvelope().getSoapBody().getPayload().getFirstChild().getFirstChild().setNodeValue("Natasha");
 
 
-        System.out.println(soapFactory.generateSOAPEnvelope().asString());
+        System.out.println(soapFactory.generateSOAPEnvelope().toString());
 
 
 

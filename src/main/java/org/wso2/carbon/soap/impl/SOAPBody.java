@@ -95,7 +95,7 @@ public class SOAPBody extends ElementImpl {
      *
      * @return SOAP Body as a string
      */
-    public String asString() {
+    public String toString() {
         String str = null;
         Transformer serializer = null;
         try {

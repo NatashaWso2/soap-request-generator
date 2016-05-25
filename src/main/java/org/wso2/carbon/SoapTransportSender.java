@@ -15,49 +15,78 @@
  */
 package org.wso2.carbon;
 
+import org.w3c.dom.Node;
+import org.wso2.carbon.messaging.CarbonCallback;
+import org.wso2.carbon.messaging.CarbonMessage;
+import org.wso2.carbon.messaging.Constants;
 import org.wso2.carbon.messaging.DefaultCarbonMessage;
+import org.wso2.carbon.messaging.MessageProcessorException;
+import org.wso2.carbon.soap.impl.CarbonSOAPMessage;
+import org.wso2.carbon.soap.impl.HeaderProperties;
+import org.wso2.carbon.soap.impl.NodeList;
+import org.wso2.carbon.soap.impl.SOAPEnvelope;
+import org.wso2.carbon.soap.impl.SOAPException;
+import org.wso2.carbon.soap.impl.SOAPFactory;
 import org.wso2.carbon.transport.http.netty.config.SenderConfiguration;
 import org.wso2.carbon.transport.http.netty.sender.NettySender;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Transport Sender for SOAP using netty
  */
 public class SoapTransportSender {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SOAPException {
         SenderConfiguration senderConfiguration = new SenderConfiguration("netty-gw");
         NettySender nettySender = new NettySender(senderConfiguration);
 
-        /*DefaultCarbonMessage carbonMessage = new DefaultCarbonMessage();
-        carbonMessage.setProperty(Constants.HOST, "localhost");
-        carbonMessage.setProperty(Constants.PORT, 9000);
-        carbonMessage.setProperty(Constants.TO,"/services/SimpleStockQuoteService");
-        carbonMessage.setProperty(org.wso2.carbon.transport.http.netty.common.Constants.
-                IS_DISRUPTOR_ENABLE, "true");
-        String payload = "<A>test</A>";
+        // Setting the properties
+        CarbonSOAPMessage carbonSOAPMessage = new CarbonSOAPMessage();
+        carbonSOAPMessage.setProperty(Constants.HOST, "localhost");
+        carbonSOAPMessage.setProperty(Constants.PORT, 9764);
+        carbonSOAPMessage.setProperty(Constants.TO, "/services/HelloService");
+        carbonSOAPMessage.setProperty(org.wso2.carbon.transport.http.netty.common.Constants.IS_DISRUPTOR_ENABLE, "true");
 
-        carbonMessage.setStringMessageBody(payload);
-        byte[] errorMessageBytes = payload.getBytes(Charset.defaultCharset());
+        //Creating the soap envelope
+        SOAPFactory soapFactory = new SOAPFactory();
+        soapFactory.createSOAPEnvelope();
+        soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Hello</TestPart></ns1:hello>"));
+        Node headerBlock1 = soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
+        Node headerBlock2 = soapFactory.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
 
-        Map<String, String> transportHeaders = new HashMap();
-        transportHeaders.put(Constants.HTTP_CONNECTION, Constants.KEEP_ALIVE);
-        transportHeaders.put(Constants.HTTP_CONTENT_TYPE, Constants.TEXT_XML);
-        transportHeaders.put(Constants.HTTP_CONTENT_LENGTH, (String.valueOf(errorMessageBytes.length)));
-        transportHeaders.put(Constants.TO, "/services/SimpleStockQuoteService");
-        carbonMessage.setHeaders(transportHeaders);
+        NodeList headers = new NodeList();
+        headers.addNode(headerBlock1);
+        headers.addNode(headerBlock2);
+
+        soapFactory.createSOAPHeader();
+        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(headerBlock1);
+        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(headerBlock2);
+        SOAPEnvelope soapEnvelope = soapFactory.generateSOAPEnvelope();
+
+        // Setting the SOAP Envelope
+        carbonSOAPMessage.setSOAPEnvelope(soapEnvelope);
+
+        HeaderProperties headerProperties = new HeaderProperties();
+        //User should add these
+        headerProperties.addHeader(Constants.HTTP_CONNECTION, Constants.KEEP_ALIVE);
+        headerProperties.addHeader(Constants.HTTP_HOST, "localhost:9764");
+        headerProperties.addHeader(Constants.HTTP_TRANSFER_ENCODING, "chunked");
+
+        carbonSOAPMessage.setHeaderProperties(headerProperties);
+
         try {
-            nettySender.send(carbonMessage, new CarbonCallback() {
+            nettySender.send(carbonSOAPMessage, new CarbonCallback() {
                 @Override
                 public void done(CarbonMessage carbonMessage) {
-                    //System.out.print(carbonMessage.getFullMessageLength());
-                    System.out.print(carbonMessage.getMessageBody());
-                    List<ByteBuffer> byteBufferList = carbonMessage.getFullMessageBody();
 
+                    System.out.print(" ------ " + carbonMessage.getMessageBody());
                 }
             });
         } catch (MessageProcessorException e) {
-            e.printStackTrace();
-        }*/
+            throw new SOAPException("Message Processor Exception " , e);
+        }
+
     }
 
 }

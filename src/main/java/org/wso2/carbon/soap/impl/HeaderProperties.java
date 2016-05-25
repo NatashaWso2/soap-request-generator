@@ -40,28 +40,46 @@ public class HeaderProperties {
 
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {
             headers.put("Content-Type", SOAP11Constants.SOAP11_CONTENT_TYPE);
-            headers.put("SOAPAction", ""); //Mandatory
+            headers.put("SOAPAction", "\"\""); //Mandatory
         } else {
             headers.put("Content-Type", SOAP12Constants.SOAP12_CONTENT_TYPE);
-            headers.put("SOAPAction", ""); //Optional
+            headers.put("SOAPAction", "\"\""); //Optional
         }
 
     }
 
+    /**
+     * Get the HTTP transport headers
+     * @return List of headers
+     */
     public Map<String, String> getHeaders() {
         return headers;
     }
 
+    /**
+     * Set the HTTP transport headers
+     * @param headers List of Headers
+     */
     public void setHeaders(Map<String, String> headers) {
         this.headers = headers;
     }
 
+    /**
+     * Add a new HTTP transport header field
+     * NOTE : Either the Content-Length or Transfer-Encoding should be specified when setting the headers.
+     *        Add the Host and the Connection fields when adding the headers
+     * @param key Name of the HTTP transport header field
+     * @param value value of the HTTP transport header field
+     */
     public void addHeader(String key, String value){
         headers.put(key, value);
     }
 
+    /**
+     * Add the value for the SOAPAction field
+     * @param soapAction
+     */
     public void addSOAPAction(String soapAction){
         headers.put("SOAPAction", soapAction);
     }
-
 }

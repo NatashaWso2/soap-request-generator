@@ -114,7 +114,7 @@ public class SOAPEnvelope extends ElementImpl {
      *
      * @return SOAP Envelope as a string
      */
-    public String asString() {
+    public String toString() {
         String str = null;
         Transformer serializer = null;
         try {

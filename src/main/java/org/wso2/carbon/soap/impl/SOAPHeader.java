@@ -131,7 +131,7 @@ public class SOAPHeader extends ElementImpl {
      *
      * @return SOAP Header as a string
      */
-    public String asString() {
+    public String toString() {
         String str = null;
         Transformer serializer = null;
         try {
