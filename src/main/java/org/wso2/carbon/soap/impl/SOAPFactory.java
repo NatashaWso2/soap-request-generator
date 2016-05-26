@@ -364,7 +364,8 @@ public class SOAPFactory extends ElementImpl {
     }
 
     /**
-     *  Creating the SOAP Envelope when a string is given
+     * Creating the SOAP Envelope when a string is given
+     *
      * @param messageBody
      * @return SOAP Envelope
      * @throws SOAPException

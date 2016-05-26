@@ -22,20 +22,22 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.util.List;
 
 public class CarbonSOAPMessage extends DefaultCarbonMessage {
-     /**
-     *  Set the SOAP Envelope to the message body
-     * @param soapEnvelope
-     */
-    public void setSOAPEnvelope(SOAPEnvelope soapEnvelope) {
-        String stringMessageBody = soapEnvelope.toString();
-        addMessageBody(ByteBuffer.wrap(stringMessageBody.getBytes(Charset.defaultCharset())));
-        setEndOfMsgAdded(true);
+    public CarbonSOAPMessage(List<ByteBuffer> bufferList) {
+
+        for (ByteBuffer buffer : bufferList) {
+            this.addMessageBody(buffer);
+        }
+    }
+
+    public CarbonSOAPMessage() {
     }
 
     /**
      * Get the SOAP Envelope
+     *
      * @return SOAP Envelope
      */
     public SOAPEnvelope getSOAPEnvelope() throws SOAPException, IOException, SAXException {
@@ -47,12 +49,22 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
     }
 
     /**
+     * Set the SOAP Envelope to the message body
+     *
+     * @param soapEnvelope
+     */
+    public void setSOAPEnvelope(SOAPEnvelope soapEnvelope) {
+        String stringMessageBody = soapEnvelope.toString();
+        addMessageBody(ByteBuffer.wrap(stringMessageBody.getBytes(Charset.defaultCharset())));
+        setEndOfMsgAdded(true);
+    }
+
+    /**
      * Set the Header properties
+     *
+     * @param HTTPTransportHeaders
      */
     public void setHeaderProperties(HTTPTransportHeaders HTTPTransportHeaders) {
         setHeaders(HTTPTransportHeaders.getHeaders());
     }
-
-
-
 }

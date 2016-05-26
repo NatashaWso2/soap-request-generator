@@ -20,7 +20,6 @@ import org.wso2.carbon.soap.constants.SOAP11Constants;
 import org.wso2.carbon.soap.constants.SOAP12Constants;
 
 import java.util.Map;
-import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -50,6 +49,7 @@ public class HTTPTransportHeaders {
 
     /**
      * Get the HTTP transport headers
+     *
      * @return List of headers
      */
     public Map<String, String> getHeaders() {
@@ -58,6 +58,7 @@ public class HTTPTransportHeaders {
 
     /**
      * Set the HTTP transport headers
+     *
      * @param headers List of Headers
      */
     public void setHeaders(Map<String, String> headers) {
@@ -67,19 +68,21 @@ public class HTTPTransportHeaders {
     /**
      * Add a new HTTP transport header field
      * NOTE : Either the Content-Length or Transfer-Encoding should be specified when setting the headers.
-     *        Add the Host and the Connection fields when adding the headers
-     * @param key Name of the HTTP transport header field
+     * Add the Host and the Connection fields when adding the headers
+     *
+     * @param key   Name of the HTTP transport header field
      * @param value value of the HTTP transport header field
      */
-    public void addHeader(String key, String value){
+    public void addHeader(String key, String value) {
         headers.put(key, value);
     }
 
     /**
      * Add the value for the SOAPAction field
+     *
      * @param soapAction
      */
-    public void addSOAPAction(String soapAction){
+    public void addSOAPAction(String soapAction) {
         headers.put("SOAPAction", soapAction);
     }
 }

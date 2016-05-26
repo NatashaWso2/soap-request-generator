@@ -16,10 +16,9 @@
 package org.wso2.carbon;
 
 import org.w3c.dom.Node;
-import org.wso2.carbon.messaging.CarbonCallback;
-import org.wso2.carbon.messaging.CarbonMessage;
 import org.wso2.carbon.messaging.Constants;
 import org.wso2.carbon.messaging.MessageProcessorException;
+import org.wso2.carbon.soap.impl.CallbackSOAPMessage;
 import org.wso2.carbon.soap.impl.CarbonSOAPMessage;
 import org.wso2.carbon.soap.impl.HTTPTransportHeaders;
 import org.wso2.carbon.soap.impl.NodeList;
@@ -28,13 +27,17 @@ import org.wso2.carbon.soap.impl.SOAPException;
 import org.wso2.carbon.soap.impl.SOAPFactory;
 import org.wso2.carbon.transport.http.netty.config.SenderConfiguration;
 import org.wso2.carbon.transport.http.netty.sender.NettySender;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
  * Transport Sender for SOAP using netty
  */
 public class SoapTransportSender {
 
-    public static void main(String[] args) throws SOAPException {
+    public static void main(String[] args) throws SOAPException, IOException, SAXException {
         SenderConfiguration senderConfiguration = new SenderConfiguration("netty-gw");
         NettySender nettySender = new NettySender(senderConfiguration);
 
@@ -45,7 +48,7 @@ public class SoapTransportSender {
         carbonSOAPMessage.setProperty(Constants.TO, "/services/HelloService");
         carbonSOAPMessage.setProperty(org.wso2.carbon.transport.http.netty.common.Constants.IS_DISRUPTOR_ENABLE, "true");
 
-        //Creating the soap envelope
+         //Creating the soap envelope
         SOAPFactory soapFactory = new SOAPFactory();
         soapFactory.createSOAPEnvelope();
         soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Hello</TestPart></ns1:hello>"));
@@ -73,13 +76,22 @@ public class SoapTransportSender {
         carbonSOAPMessage.setHeaderProperties(httpTransportHeaders);
 
         try {
-            nettySender.send(carbonSOAPMessage, new CarbonCallback() {
-                @Override
-                public void done(CarbonMessage carbonMessage) {
+            CallbackSOAPMessage callbackSOAPMessage = new CallbackSOAPMessage();
+            nettySender.send(carbonSOAPMessage, callbackSOAPMessage);
+            carbonSOAPMessage = callbackSOAPMessage.getResponse();
+           /* while (true) {
+                if (carbonSOAPMessage != null) {
 
-                    System.out.print(" ------ " + carbonMessage.getMessageBody());
+                    break;
+                } else {
+                    carbonSOAPMessage = callbackSOAPMessage.getResponse();
+
                 }
-            });
+
+            }*/
+
+
+
         } catch (MessageProcessorException e) {
             throw new SOAPException("Message Processor Exception " , e);
         }
