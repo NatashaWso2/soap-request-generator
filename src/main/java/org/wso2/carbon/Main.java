@@ -18,6 +18,7 @@ package org.wso2.carbon;
 import org.w3c.dom.Node;
 import org.wso2.carbon.soap.impl.NodeList;
 import org.wso2.carbon.soap.impl.SOAPFactory;
+import org.wso2.carbon.soap.impl.SOAPModel;
 
 public class Main {
 
@@ -25,71 +26,89 @@ public class Main {
 
         //Create a instance of the SOAP Factory
         SOAPFactory soapFactory = new SOAPFactory();
+        SOAPModel soapModel = soapFactory.getSoapModel();
 
         //Create the SOAP Envelope
-        soapFactory.createSOAPEnvelope();
+        soapModel.createSOAPEnvelope();
 
         // ------- SOAP HEADER ----------
         //Creating the SOAP Header and Adding header blocks/nodes to the header can be done in many ways.
-        Node headerBlock1 = soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
-        Node headerBlock2 = soapFactory.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
+        Node headerBlock1 = soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
+        Node headerBlock2 = soapModel.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
 
         NodeList headers = new NodeList();
         headers.addNode(headerBlock1);
         headers.addNode(headerBlock2);
 
         //1
-        soapFactory.createSOAPHeader();
-        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(headerBlock1);
-        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(headerBlock2);
+        soapModel.createSOAPHeader();
+        soapModel.getSoapEnvelope().getSoapHeader().setHeader(headerBlock1);
+        soapModel.getSoapEnvelope().getSoapHeader().setHeader(headerBlock2);
 
         //2
-        /*soapFactory.getSoapEnvelope().getSoapHeader().setHeaders(headers);*/
+        /*soapModel.getSoapEnvelope().getSoapHeader().setHeaders(headers);*/
 
         //3
-       /* soapFactory.createSOAPHeader(headers); */
+       /* soapModel.createSOAPHeader(headers); */
 
         // Deleting the header blocks
-        // soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(1);
-        //soapFactory.getSoapEnvelope().getSoapHeader().deleteHeaders(headerBlock1);
+        // soapModel.getSoapEnvelope().getSoapHeader().deleteHeaders(1);
+        //soapModel.getSoapEnvelope().getSoapHeader().deleteHeaders(headerBlock1);
 
         //Get header block items
-        //System.out.println(soapFactory.getSoapEnvelope().getSoapHeader().getAllHeaders().item(0));
+        //System.out.println(soapModel.getSoapEnvelope().getSoapHeader().getAllHeaders().item(0));
 
 
         // ------- SOAP BODY ------------------------------------------------------------------------------------------------------------
         //Creating the SOAP Body and Adding the payloads  to the header can be done in many ways.
 
         //1
-        //soapFactory.createSOAPBody(); //Creating the empty body
+        //soapModel.createSOAPBody(); //Creating the empty body
 
         //2
-        soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>"));
+        soapModel.createSOAPBody(soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>"));
 
         //3
-        /*SOAPBody soapBody =  soapFactory.createSOAPBody();
-        Node node = soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>");
+        /*SOAPBody soapBody =  soapModel.createSOAPBody();
+        Node node = soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>");
         soapBody.setPayload(node);*/
 
         //4
-      /*  soapFactory.createSOAPBody();
-        soapFactory.getSoapEnvelope().getSoapBody().setPayload(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>"));
-        soapFactory.createSOAPBody(soapFactory.getSoapEnvelope().getSoapBody().getPayload());*/
+      /*  soapModel.createSOAPBody();
+        soapModel.getSoapEnvelope().getSoapBody().setPayload(soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Mellow</TestPart></ns1:hello>"));
+        soapModel.createSOAPBody(soapModel.getSoapEnvelope().getSoapBody().getPayload());*/
 
         //Creating the soap envelope when a string message body is given ----------------------
-       /* soapFactory.createSOAPEnvelope("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><soapenv:Header><ns1:hello xmlns:ns1=\"http://ode/bpel/unit-test.wsdl\"><TestPart>HEADER11</TestPart></ns1:hello><ns2:h xmlns:ns2=\"http://ode/bpel/unit-test.wsdl\"><TestPart>HEADER22</TestPart></ns2:h></soapenv:Header><soapenv:Body><ns1:hello xmlns:ns1=\"http://ode/bpel/unit-test.wsdl\"><TestPart>Mellow</TestPart></ns1:hello></soapenv:Body></soapenv:Envelope>\n");
-        System.out.println(soapFactory.getSoapEnvelope().toString());*/
+       /* soapModel.createSOAPEnvelope("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><soapenv:Header><ns1:hello xmlns:ns1=\"http://ode/bpel/unit-test.wsdl\"><TestPart>HEADER11</TestPart></ns1:hello><ns2:h xmlns:ns2=\"http://ode/bpel/unit-test.wsdl\"><TestPart>HEADER22</TestPart></ns2:h></soapenv:Header><soapenv:Body><ns1:hello xmlns:ns1=\"http://ode/bpel/unit-test.wsdl\"><TestPart>Mellow</TestPart></ns1:hello></soapenv:Body></soapenv:Envelope>\n");
+        System.out.println(soapModel.getSoapEnvelope().toString());*/
 
         //Deleting the payload
-        // soapFactory.getSoapEnvelope().getSoapBody().deletePayload();
+        // soapModel.getSoapEnvelope().getSoapBody().deletePayload();
 
         //Changing the value of a node
-        //soapFactory.getSoapEnvelope().getSoapBody().getPayload().getFirstChild().getFirstChild().setNodeValue("Natasha");
+        //soapModel.getSoapEnvelope().getSoapBody().getPayload().getFirstChild().getFirstChild().setNodeValue("Natasha");
 
 
-        System.out.println(soapFactory.generateSOAPEnvelope().toString());
+        System.out.println(soapModel.generateSOAPEnvelope().toString());
 
 
+        SOAPModel soapModel2 = soapFactory.getSoapModel();
+
+        //Create the SOAP Envelope
+        soapModel2.createSOAPEnvelope();
+
+        // ------- SOAP HEADER ----------
+        //Creating the SOAP Header and Adding header blocks/nodes to the header can be done in many ways.
+        Node headerBlock = soapModel2.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
+
+        NodeList headers1 = new NodeList();
+        headers.addNode(headerBlock);
+
+
+        //1
+        soapModel2.createSOAPHeader();
+        soapModel2.getSoapEnvelope().getSoapHeader().setHeader(headerBlock);
+        System.out.println("2 --- "+soapModel2.generateSOAPEnvelope().toString());
 
 
         //Header properties

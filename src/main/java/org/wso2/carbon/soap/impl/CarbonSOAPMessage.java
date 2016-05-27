@@ -42,10 +42,13 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
      */
     public SOAPEnvelope getSOAPEnvelope() throws SOAPException, IOException, SAXException {
         ByteBuffer byteBuffer = getMessageBody();
-        String soapEnvelopeStr = new String(byteBuffer.array(), "UTF-8");
-        SOAPFactory soapFactory = new SOAPFactory();
-        soapFactory.createSOAPEnvelope(soapEnvelopeStr);
-        return soapFactory.getSoapEnvelope();
+        //String soapEnvelopeStr = new String(byteBuffer.array(), "UTF-8");
+        byte[] data = new byte[byteBuffer.remaining()];
+        byteBuffer.get(data);
+        String token = new String(data);
+        SOAPModel soapModel = new SOAPModel();
+        soapModel.createSOAPEnvelope(token);
+        return soapModel.getSoapEnvelope();
     }
 
     /**

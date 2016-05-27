@@ -25,12 +25,12 @@ import org.wso2.carbon.soap.impl.NodeList;
 import org.wso2.carbon.soap.impl.SOAPEnvelope;
 import org.wso2.carbon.soap.impl.SOAPException;
 import org.wso2.carbon.soap.impl.SOAPFactory;
+import org.wso2.carbon.soap.impl.SOAPModel;
 import org.wso2.carbon.transport.http.netty.config.SenderConfiguration;
 import org.wso2.carbon.transport.http.netty.sender.NettySender;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 
 /**
  * Transport Sender for SOAP using netty
@@ -50,19 +50,20 @@ public class SoapTransportSender {
 
          //Creating the soap envelope
         SOAPFactory soapFactory = new SOAPFactory();
-        soapFactory.createSOAPEnvelope();
-        soapFactory.createSOAPBody(soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Hello</TestPart></ns1:hello>"));
-        Node headerBlock1 = soapFactory.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
-        Node headerBlock2 = soapFactory.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
+        SOAPModel soapModel = soapFactory.getSoapModel();
+        soapModel.createSOAPEnvelope();
+        soapModel.createSOAPBody(soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Hello</TestPart></ns1:hello>"));
+        Node headerBlock1 = soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
+        Node headerBlock2 = soapModel.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
 
         NodeList headers = new NodeList();
         headers.addNode(headerBlock1);
         headers.addNode(headerBlock2);
 
-        soapFactory.createSOAPHeader();
-        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(headerBlock1);
-        soapFactory.getSoapEnvelope().getSoapHeader().setHeader(headerBlock2);
-        SOAPEnvelope soapEnvelope = soapFactory.generateSOAPEnvelope();
+        soapModel.createSOAPHeader();
+        soapModel.getSoapEnvelope().getSoapHeader().setHeader(headerBlock1);
+        soapModel.getSoapEnvelope().getSoapHeader().setHeader(headerBlock2);
+        SOAPEnvelope soapEnvelope = soapModel.generateSOAPEnvelope();
 
         // Setting the SOAP Envelope
         carbonSOAPMessage.setSOAPEnvelope(soapEnvelope);
@@ -79,17 +80,7 @@ public class SoapTransportSender {
             CallbackSOAPMessage callbackSOAPMessage = new CallbackSOAPMessage();
             nettySender.send(carbonSOAPMessage, callbackSOAPMessage);
             carbonSOAPMessage = callbackSOAPMessage.getResponse();
-           /* while (true) {
-                if (carbonSOAPMessage != null) {
-
-                    break;
-                } else {
-                    carbonSOAPMessage = callbackSOAPMessage.getResponse();
-
-                }
-
-            }*/
-
+            //System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());
 
 
         } catch (MessageProcessorException e) {

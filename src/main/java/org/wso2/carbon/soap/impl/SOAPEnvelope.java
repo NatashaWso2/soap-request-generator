@@ -34,15 +34,15 @@ public class SOAPEnvelope extends ElementImpl {
     SOAPBody soapBody;
     Element soapEnvelopeElement;
     SOAPHeader soapHeader;
-    SOAPFactory soapFactory;
+    SOAPModel soapModel;
 
 
-    public SOAPEnvelope(SOAPFactory soapFactory) throws SOAPException {
-        this.soapFactory = soapFactory;
+    public SOAPEnvelope(SOAPModel soapModel) throws SOAPException {
+        this.soapModel = soapModel;
     }
 
-    public SOAPFactory getSoapFactory() {
-        return soapFactory;
+    public SOAPModel getSoapModel() {
+        return soapModel;
     }
 
     /**

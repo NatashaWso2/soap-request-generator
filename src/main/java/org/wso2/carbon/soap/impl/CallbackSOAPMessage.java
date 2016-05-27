@@ -24,10 +24,19 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
 
+/**
+ * Callback class used in request path to execute in response path.
+ * When response arrives callback methods should execute.
+ */
 public class CallbackSOAPMessage implements CarbonCallback {
 
     CarbonSOAPMessage response;
 
+    /**
+     * Calls in response path to do work for response.
+     *
+     * @param cMsg CarbonMessage to be processed.
+     */
     @Override
     public void done(CarbonMessage cMsg) {
 
@@ -35,7 +44,7 @@ public class CallbackSOAPMessage implements CarbonCallback {
         response = new CarbonSOAPMessage(bufferList);
 
         // Get the response as a string
-        String responseStr = "";
+       /* String responseStr = "";
         for (ByteBuffer buffer : bufferList) {
             byte[] bytes;
             if (buffer.hasArray()) {
@@ -49,9 +58,28 @@ public class CallbackSOAPMessage implements CarbonCallback {
 
 
         }
-        System.out.println(responseStr);
+        System.out.println(responseStr);*/
+
+        System.out.println(" - - - - - - - - ");
+        try {
+            System.out.println(response.getSOAPEnvelope().toString());
+        } catch (SOAPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Gets the response from the response path
+     *
+     * @return CarbonSOAPMessage
+     * @throws SOAPException
+     * @throws IOException
+     * @throws SAXException
+     */
     public CarbonSOAPMessage getResponse() throws SOAPException, IOException, SAXException {
 
         while (true) {
