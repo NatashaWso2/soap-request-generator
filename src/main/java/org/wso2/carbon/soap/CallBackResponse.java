@@ -16,6 +16,7 @@
 package org.wso2.carbon.soap;
 
 import org.wso2.carbon.soap.impl.CarbonSOAPMessage;
+import org.wso2.carbon.soap.impl.SOAPException;
 
 /**
  * Interface to handle the received response message
