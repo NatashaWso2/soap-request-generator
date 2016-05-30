@@ -34,7 +34,7 @@ import java.io.StringReader;
 /**
  * Model used to build the SOAP envelope which contains all the methods
  */
-public class SOAPModel extends ElementImpl {
+public class SOAPModel {
 
     private SOAPEnvelope envelope;
     private DocumentBuilder docBuilder;

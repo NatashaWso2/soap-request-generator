@@ -21,23 +21,23 @@ package org.wso2.carbon.soap.constants;
 public interface Constants {
 
 
-    public static final String SOAP_NAMESPACE_PREFIX = "soapenv";
+    static final String SOAP_NAMESPACE_PREFIX = "soapenv";
 
-    public static final String SOAP_ENVELOPE = "Envelope";
+    static final String SOAP_ENVELOPE = "Envelope";
 
-    public static final String HEADER = "Header";
+    static final String HEADER = "Header";
 
-    public static final String BODY = "Body";
+    static final String BODY = "Body";
 
-    public static final String SOAP_FAULT = "Fault";
+    static final String SOAP_FAULT = "Fault";
 
-    public static final String ENCODING_STYLE = "encodingStyle";
+    static final String ENCODING_STYLE = "encodingStyle";
 
-    public static final String MUST_UNDERSTAND = "mustUnderstand";
+    static final String MUST_UNDERSTAND = "mustUnderstand";
 
-    public static final String SOAP11_VERSION = "soap11";
+    static final String SOAP11_VERSION = "soap11";
 
-    public static final String SOAP12_VERSION = "soap12";
+    static final String SOAP12_VERSION = "soap12";
 
 
 }

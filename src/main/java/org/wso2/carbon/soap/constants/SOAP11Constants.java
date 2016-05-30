@@ -20,24 +20,24 @@ package org.wso2.carbon.soap.constants;
  */
 public interface SOAP11Constants extends Constants {
 
-    public static final String SOAP_ENVELOPE_NAMESPACE_URI = "http://schemas.xmlsoap.org/soap/envelope/";
+    static final String SOAP_ENVELOPE_NAMESPACE_URI = "http://schemas.xmlsoap.org/soap/envelope/";
 
-    public static final String SOAP_ENCODING_NAMESPACE_URI = "http://schemas.xmlsoap.org/soap/encoding/";
+    static final String SOAP_ENCODING_NAMESPACE_URI = "http://schemas.xmlsoap.org/soap/encoding/";
 
-    public static final String SOAP11_CONTENT_TYPE = "text/xml";
+    static final String SOAP11_CONTENT_TYPE = "text/xml";
 
-    public static final String ACTOR = "actor";
+    static final String ACTOR = "actor";
 
-    public static final String SOAP11_VERSION_NAMESPACE = "http://schemas.xmlsoap.org/wsdl/soap/";
+    static final String SOAP11_VERSION_NAMESPACE = "http://schemas.xmlsoap.org/wsdl/soap/";
 
     //Fault Codes
 
-    public static final String SOAP_FAULT_CODE = "faultcode";
+    static final String SOAP_FAULT_CODE = "faultcode";
 
-    public static final String SOAP_FAULT_STRING = "faultstring";
+    static final String SOAP_FAULT_STRING = "faultstring";
 
-    public static final String SOAP_FAULT_DETAIL = "detail";
+    static final String SOAP_FAULT_DETAIL = "detail";
 
-    public static final String SOAP_FAULT_ACTOR = "faultactor";
+    static final String SOAP_FAULT_ACTOR = "faultactor";
 
 }

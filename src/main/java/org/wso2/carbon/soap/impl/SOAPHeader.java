@@ -29,10 +29,10 @@ import java.io.StringWriter;
 /**
  * Creates the SOAP Header of the SOAP Envelope
  */
-public class SOAPHeader extends ElementImpl {
+public class SOAPHeader {
 
 
-    Element soapHeaderElement;
+    private Element soapHeaderElement;
 
 
     public SOAPHeader() {

@@ -20,13 +20,13 @@ package org.wso2.carbon.soap.constants;
  */
 public interface SOAP12Constants extends Constants {
 
-    public static final String SOAP_ENVELOPE_NAMESPACE_URI = "http://www.w3.org/2003/05/soap-envelope";
+    static final String SOAP_ENVELOPE_NAMESPACE_URI = "http://www.w3.org/2003/05/soap-envelope";
 
-    public static final String SOAP_ENCODING_NAMESPACE_URI = "http://www.w3.org/2003/05/soap-encoding";
+    static final String SOAP_ENCODING_NAMESPACE_URI = "http://www.w3.org/2003/05/soap-encoding";
 
-    public static final String SOAP12_CONTENT_TYPE = "application/soap+xml";
+    static final String SOAP12_CONTENT_TYPE = "application/soap+xml";
 
-    public static final String SOAP_ROLE = "role";
+    static final String SOAP_ROLE = "role";
 
     //SOAP Fault Codes
 
@@ -39,9 +39,9 @@ public interface SOAP12Constants extends Constants {
      * </env:Code>
      */
 
-    public static final String SOAP_FAULT_CODE = "Code";
-    public static final String SOAP_FAULT_SUBCODE = "Subcode";
-    public static final String SOAP_FAULT_VALUE = "Value";
+    static final String SOAP_FAULT_CODE = "Code";
+    static final String SOAP_FAULT_SUBCODE = "Subcode";
+    static final String SOAP_FAULT_VALUE = "Value";
 
     // SOAP Fault Reason
     /**
@@ -49,11 +49,11 @@ public interface SOAP12Constants extends Constants {
      * <env:Text xml:lang="en-US">Processing error</env:Text>
      * </env:Reason>
      */
-    public static final String SOAP_FAULT_REASON = "Reason";
-    public static final String SOAP_FAULT_TEXT = "Text";
-    public static final String SOAP_FAULT_TEXT_LANG = "lang";
-    public static final String SOAP_FAULT_TEXT_LANG_PREFIX = "xml";
-    public static final String SOAP_FAULT_TEXT_LANG_NAMESPACE = "en-US";
+    static final String SOAP_FAULT_REASON = "Reason";
+    static final String SOAP_FAULT_TEXT = "Text";
+    static final String SOAP_FAULT_TEXT_LANG = "lang";
+    static final String SOAP_FAULT_TEXT_LANG_PREFIX = "xml";
+    static final String SOAP_FAULT_TEXT_LANG_NAMESPACE = "en-US";
 
     // SOAP Fault Detail
     /**
@@ -64,9 +64,9 @@ public interface SOAP12Constants extends Constants {
      * </e:myFaultDetails>
      * </env:Detail>
      */
-    public static final String SOAP_FAULT_DETAIL = "Detail";
+    static final String SOAP_FAULT_DETAIL = "Detail";
 
     // SOAP Fault Role
 
-    public static final String SOAP_FAULT_ROLE = "Role";
+    static final String SOAP_FAULT_ROLE = "Role";
 }

@@ -28,13 +28,13 @@ import java.io.StringWriter;
 /**
  * Creates the SOAP Envelope i.e. the SOAP request payload
  */
-public class SOAPEnvelope extends ElementImpl {
+public class SOAPEnvelope {
 
 
-    SOAPBody soapBody;
-    Element soapEnvelopeElement;
-    SOAPHeader soapHeader;
-    SOAPModel soapModel;
+    private SOAPBody soapBody;
+    private Element soapEnvelopeElement;
+    private SOAPHeader soapHeader;
+    private SOAPModel soapModel;
 
 
     public SOAPEnvelope(SOAPModel soapModel) throws SOAPException {

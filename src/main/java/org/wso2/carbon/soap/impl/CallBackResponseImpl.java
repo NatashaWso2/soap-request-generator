@@ -13,34 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.wso2.carbon.soap.impl;
 
-import org.w3c.dom.Element;
+import org.wso2.carbon.soap.CallBackResponse;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
 
 /**
- * Represents an XML element of the DOM
+ * Handles the response message received
  */
-public class ElementImpl {
+public class CallBackResponseImpl implements CallBackResponse {
+    @Override
+    public void handleResponseReceived(CarbonSOAPMessage carbonSOAPMessage) {
 
-    Element element;
-
-    /**
-     * Gets the element from the document
-     *
-     * @return element
-     */
-    public Element getElement() {
-        return element;
+        try {
+            System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());
+        } catch (SOAPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
     }
-
-    /**
-     * Sets the element to the document
-     *
-     * @param element
-     */
-    public void setElement(Element element) {
-        this.element = element;
-    }
-
-
 }
