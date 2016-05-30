@@ -66,16 +66,7 @@ public class CallbackSOAPMessage implements CarbonCallback {
      * @throws IOException
      * @throws SAXException
      */
-    public CarbonSOAPMessage getResponse() throws SOAPException, IOException, SAXException {
-
-        while (true) {
-            if (response != null) {
-
-                break;
-            }
-
-        }
-
+    public CarbonSOAPMessage getResponse() {
 
         return response;
     }
