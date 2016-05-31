@@ -19,7 +19,7 @@ package org.wso2.carbon.soap.impl;
 import org.wso2.carbon.messaging.CarbonMessage;
 import org.wso2.carbon.messaging.DefaultCarbonMessage;
 import org.wso2.carbon.soap.constants.Constants;
-import org.wso2.carbon.soap.constants.SOAP11Constants;
+import org.wso2.carbon.soap.constants.SOAP12Constants;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -38,6 +38,8 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
         }
         Map headers = cMsg.getHeaders();
         setHeaders(headers);
+        cMsg.getFaultHandlerStack();
+
     }
 
     public CarbonSOAPMessage() {
@@ -58,12 +60,12 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
             byteBuffer.get(data);
             String token = new String(data);
             Map headers = getHeaders();
-            String contentType = (String.valueOf(headers.get("Content-Type"))).split(";")[0];
+            String contentType = (String.valueOf(headers.get("Content-Type"))).split(";")[0].trim();
             String soapVersion = null;
-            if (contentType.equals(SOAP11Constants.SOAP11_CONTENT_TYPE)) {
-                soapVersion = Constants.SOAP11_VERSION;
-            } else {
+            if (contentType.equals(SOAP12Constants.SOAP12_CONTENT_TYPE)) {
                 soapVersion = Constants.SOAP12_VERSION;
+            } else {
+                soapVersion = Constants.SOAP11_VERSION;
             }
             SOAPModel soapModel = new SOAPModel(soapVersion);
             soapModel.createSOAPEnvelope(token);

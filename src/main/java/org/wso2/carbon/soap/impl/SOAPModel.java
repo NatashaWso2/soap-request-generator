@@ -50,6 +50,7 @@ public class SOAPModel {
 
     /**
      * Gets the SOAP version of the message
+     *
      * @return soap version
      */
     public String getSoapVersion() {

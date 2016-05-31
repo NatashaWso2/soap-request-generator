@@ -20,9 +20,6 @@ import org.wso2.carbon.messaging.CarbonCallback;
 import org.wso2.carbon.messaging.CarbonMessage;
 import org.wso2.carbon.soap.SOAPCallBackResponse;
 
-import java.nio.ByteBuffer;
-import java.util.List;
-
 /**
  * Callback class used in request path to execute in response path.
  * When response arrives callback methods should execute.
@@ -58,7 +55,6 @@ public class CallbackSOAPMessage implements CarbonCallback {
      * Gets the response from the response path
      *
      * @return CarbonSOAPMessage
-     *
      */
     public CarbonSOAPMessage getResponse() {
 
