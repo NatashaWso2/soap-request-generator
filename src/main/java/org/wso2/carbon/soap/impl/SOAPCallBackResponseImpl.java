@@ -30,7 +30,8 @@ public class SOAPCallBackResponseImpl implements SOAPCallBackResponse {
 
         try {
             System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());
-            System.out.println(carbonSOAPMessage.getSOAPEnvelope().getSoapBody().toString());
+            System.out.println(carbonSOAPMessage.getSOAPEnvelope().getSoapModel().getSoapVersion());
+           // System.out.println(carbonSOAPMessage.getSOAPEnvelope().getSoapBody().toString());
 
         } catch (IOException e) {
             new SOAPException("I/O Exception" , e);

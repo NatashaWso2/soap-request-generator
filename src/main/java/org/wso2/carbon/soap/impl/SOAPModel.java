@@ -48,13 +48,6 @@ public class SOAPModel {
         doc = docBuilder.newDocument();
     }
 
-
-    protected SOAPModel() throws SOAPException {
-        envelope = new SOAPEnvelope(this);
-        docBuilder = createDocumentBuilder();
-        doc = docBuilder.newDocument();
-    }
-
     /**
      * Gets the SOAP version of the message
      * @return soap version

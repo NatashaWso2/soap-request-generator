@@ -16,21 +16,28 @@
 package org.wso2.carbon.soap.impl;
 
 
+import org.wso2.carbon.messaging.CarbonMessage;
 import org.wso2.carbon.messaging.DefaultCarbonMessage;
+import org.wso2.carbon.soap.constants.Constants;
+import org.wso2.carbon.soap.constants.SOAP11Constants;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Map;
 
 public class CarbonSOAPMessage extends DefaultCarbonMessage {
     private SOAPEnvelope soapEnvelope;
-    public CarbonSOAPMessage(List<ByteBuffer> bufferList) {
 
-        for (ByteBuffer buffer : bufferList) {
+    public CarbonSOAPMessage(CarbonMessage cMsg) {
+        List<ByteBuffer> fullMessageBody = cMsg.getFullMessageBody();
+        for (ByteBuffer buffer : fullMessageBody) {
             this.addMessageBody(buffer);
         }
+        Map headers = cMsg.getHeaders();
+        setHeaders(headers);
     }
 
     public CarbonSOAPMessage() {
@@ -43,15 +50,22 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
      */
     public SOAPEnvelope getSOAPEnvelope() throws SOAPException, IOException, SAXException {
 
-        if(soapEnvelope != null){
+        if (soapEnvelope != null) {
             return soapEnvelope;
         } else {
             ByteBuffer byteBuffer = getMessageBody();
-            //String soapEnvelopeStr = new String(byteBuffer.array(), "UTF-8");
             byte[] data = new byte[byteBuffer.remaining()];
             byteBuffer.get(data);
             String token = new String(data);
-            SOAPModel soapModel = new SOAPModel();
+            Map headers = getHeaders();
+            String contentType = (String.valueOf(headers.get("Content-Type"))).split(";")[0];
+            String soapVersion = null;
+            if (contentType.equals(SOAP11Constants.SOAP11_CONTENT_TYPE)) {
+                soapVersion = Constants.SOAP11_VERSION;
+            } else {
+                soapVersion = Constants.SOAP12_VERSION;
+            }
+            SOAPModel soapModel = new SOAPModel(soapVersion);
             soapModel.createSOAPEnvelope(token);
             soapEnvelope = soapModel.getSoapEnvelope();
             return soapEnvelope;

@@ -47,8 +47,7 @@ public class CallbackSOAPMessage implements CarbonCallback {
     @Override
     public void done(CarbonMessage cMsg) {
 
-        List<ByteBuffer> bufferList = cMsg.getFullMessageBody();
-        response = new CarbonSOAPMessage(bufferList);
+        response = new CarbonSOAPMessage(cMsg);
 
         //Handle the received response message
         SOAPCallBackResponse.handleResponseReceived(response);
