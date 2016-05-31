@@ -25,5 +25,8 @@
         <module name="Soap-Extension" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Soap-Extension" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
