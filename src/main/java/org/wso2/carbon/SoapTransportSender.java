@@ -18,6 +18,7 @@ package org.wso2.carbon;
 import org.w3c.dom.Node;
 import org.wso2.carbon.messaging.Constants;
 import org.wso2.carbon.messaging.MessageProcessorException;
+import org.wso2.carbon.soap.impl.CallBackResponseImpl;
 import org.wso2.carbon.soap.impl.CallbackSOAPMessage;
 import org.wso2.carbon.soap.impl.CarbonSOAPMessage;
 import org.wso2.carbon.soap.impl.HTTPTransportHeaders;
@@ -77,7 +78,8 @@ public class SoapTransportSender {
         carbonSOAPMessage.setHeaderProperties(httpTransportHeaders);
 
         try {
-            CallbackSOAPMessage callbackSOAPMessage = new CallbackSOAPMessage();
+            CallBackResponseImpl callBackResponse = new CallBackResponseImpl();
+            CallbackSOAPMessage callbackSOAPMessage = new CallbackSOAPMessage(callBackResponse);
             nettySender.send(carbonSOAPMessage, callbackSOAPMessage);
             carbonSOAPMessage = callbackSOAPMessage.getResponse();
 //            System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());

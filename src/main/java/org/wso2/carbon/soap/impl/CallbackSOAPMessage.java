@@ -53,7 +53,6 @@ public class CallbackSOAPMessage implements CarbonCallback {
         response = new CarbonSOAPMessage(bufferList);
 
         //Handle the received response message
-        callBackResponse = new CallBackResponseImpl();
         callBackResponse.handleResponseReceived(response);
 
     }
