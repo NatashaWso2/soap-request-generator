@@ -30,8 +30,10 @@ public class CallBackResponseImpl implements CallBackResponse {
 
         try {
             System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());
+            System.out.println(carbonSOAPMessage.getSOAPEnvelope().getSoapBody().toString());
+
         } catch (IOException e) {
-             new SOAPException("I/O Exception" , e);
+            new SOAPException("I/O Exception" , e);
         } catch (SAXException e) {
             new SOAPException("Error or warning information from either the XML parser or the application" , e);
         } catch (SOAPException e) {

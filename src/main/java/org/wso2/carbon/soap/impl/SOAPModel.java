@@ -340,8 +340,6 @@ public class SOAPModel {
 
                 Element headerElement = doc.createElementNS(namespaceURI, Constants.HEADER);
                 headerElement.setPrefix(Constants.SOAP_NAMESPACE_PREFIX);
-
-                //soapBody.setSoapBodyElement(headerElement);
                 soapHeader = new SOAPHeader(headerElement);
                 soapHeader.setHeaders(headers);
                 for (int i = 0; i < headers.getLength(); i++) {

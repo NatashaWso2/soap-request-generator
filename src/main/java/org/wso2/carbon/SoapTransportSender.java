@@ -81,8 +81,8 @@ public class SoapTransportSender {
             CallBackResponseImpl callBackResponse = new CallBackResponseImpl();
             CallbackSOAPMessage callbackSOAPMessage = new CallbackSOAPMessage(callBackResponse);
             nettySender.send(carbonSOAPMessage, callbackSOAPMessage);
-            carbonSOAPMessage = callbackSOAPMessage.getResponse();
-//            System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());
+            /*carbonSOAPMessage = callbackSOAPMessage.getResponse();
+            System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());*/
 
 
         } catch (MessageProcessorException e) {

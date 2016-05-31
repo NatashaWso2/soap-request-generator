@@ -61,9 +61,7 @@ public class CallbackSOAPMessage implements CarbonCallback {
      * Gets the response from the response path
      *
      * @return CarbonSOAPMessage
-     * @throws SOAPException
-     * @throws IOException
-     * @throws SAXException
+     *
      */
     public CarbonSOAPMessage getResponse() {
 

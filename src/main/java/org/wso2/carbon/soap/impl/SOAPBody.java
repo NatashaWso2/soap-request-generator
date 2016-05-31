@@ -35,10 +35,10 @@ public class SOAPBody {
     private Element soapBodyElement;
 
 
-    public SOAPBody() {
+    protected SOAPBody() {
     }
 
-    public SOAPBody(Element soapBodyElement) {
+    protected SOAPBody(Element soapBodyElement) {
         this.soapBodyElement = soapBodyElement;
     }
 
@@ -105,10 +105,11 @@ public class SOAPBody {
             str = stw.toString();
 
         } catch (TransformerConfigurationException e) {
-            new SOAPException("Configuration error when converting the element to string");
+           // new SOAPException("Configuration error when converting the element to string");
         } catch (TransformerException e) {
-            new SOAPException("Exceptional condition that occured during the transformation process" +
-                    " when converting the element to string");
+            /*new SOAPException("Exceptional condition that occured during the transformation process" +
+                    " when converting the element to string");*/
+            return null;
         }
 
 

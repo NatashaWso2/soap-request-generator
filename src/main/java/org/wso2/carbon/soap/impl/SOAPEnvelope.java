@@ -37,7 +37,7 @@ public class SOAPEnvelope {
     private SOAPModel soapModel;
 
 
-    public SOAPEnvelope(SOAPModel soapModel) throws SOAPException {
+    protected SOAPEnvelope(SOAPModel soapModel) throws SOAPException {
         this.soapModel = soapModel;
     }
 
@@ -124,10 +124,12 @@ public class SOAPEnvelope {
             str = stw.toString();
 
         } catch (TransformerConfigurationException e) {
-            new SOAPException("Configuration error when converting the element to string");
+            //new SOAPException("Configuration error when converting the element to string");
+            return null;
         } catch (TransformerException e) {
-            new SOAPException("Exceptional condition that occured during the transformation process" +
-                    " when converting the element to string");
+            /*new SOAPException("Exceptional condition that occured during the transformation process" +
+                    " when converting the element to string");*/
+            return null;
         }
 
 

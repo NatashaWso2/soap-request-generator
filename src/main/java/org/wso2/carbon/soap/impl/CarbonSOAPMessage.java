@@ -25,6 +25,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class CarbonSOAPMessage extends DefaultCarbonMessage {
+    private SOAPEnvelope soapEnvelope;
     public CarbonSOAPMessage(List<ByteBuffer> bufferList) {
 
         for (ByteBuffer buffer : bufferList) {
@@ -41,14 +42,21 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
      * @return SOAP Envelope
      */
     public SOAPEnvelope getSOAPEnvelope() throws SOAPException, IOException, SAXException {
-        ByteBuffer byteBuffer = getMessageBody();
-        //String soapEnvelopeStr = new String(byteBuffer.array(), "UTF-8");
-        byte[] data = new byte[byteBuffer.remaining()];
-        byteBuffer.get(data);
-        String token = new String(data);
-        SOAPModel soapModel = new SOAPModel();
-        soapModel.createSOAPEnvelope(token);
-        return soapModel.getSoapEnvelope();
+
+        if(soapEnvelope != null){
+            return soapEnvelope;
+        } else {
+            ByteBuffer byteBuffer = getMessageBody();
+            //String soapEnvelopeStr = new String(byteBuffer.array(), "UTF-8");
+            byte[] data = new byte[byteBuffer.remaining()];
+            byteBuffer.get(data);
+            String token = new String(data);
+            SOAPModel soapModel = new SOAPModel();
+            soapModel.createSOAPEnvelope(token);
+            soapEnvelope = soapModel.getSoapEnvelope();
+            return soapEnvelope;
+        }
+
     }
 
     /**
