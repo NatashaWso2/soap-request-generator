@@ -15,6 +15,8 @@
  */
 package org.wso2.carbon.soap.impl;
 
+import org.wso2.carbon.soap.constants.Constants;
+
 /**
  * Factory class used to create SOAP Models
  */
@@ -25,12 +27,23 @@ public class SOAPFactory {
     /**
      * Gets a new instance of the SOAP Model used to create a SOAP Envelope
      *
+     * @param soapVersion soap version to be used i.e. soap11 or soap12
+     * @return new instance of the SOAP Model
+     * @throws SOAPException
+     */
+    public SOAPModel getSoapModel(String soapVersion) throws SOAPException {
+        soapModel = new SOAPModel(soapVersion);
+        return soapModel;
+    }
+
+    /**
+     * Gets a new instance of the SOAP Model used to create a SOAP Envelope
+     *
      * @return new instance of the SOAP Model
      * @throws SOAPException
      */
     public SOAPModel getSoapModel() throws SOAPException {
-        soapModel = new SOAPModel();
-        return soapModel;
+        return getSoapModel(Constants.SOAP11_VERSION);
     }
 
     /**

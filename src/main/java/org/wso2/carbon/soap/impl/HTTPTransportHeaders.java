@@ -34,9 +34,9 @@ public class HTTPTransportHeaders {
      * @return properties which contains transport binding rules
      * @throws Exception
      */
-    public HTTPTransportHeaders() {
-        String soapVersion = "soap11";
+    public HTTPTransportHeaders(SOAPModel soapModel) throws SOAPException {
 
+        String soapVersion = soapModel.getSoapVersion();
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {
             headers.put("Content-Type", SOAP11Constants.SOAP11_CONTENT_TYPE);
             headers.put("SOAPAction", "\"\""); //Mandatory

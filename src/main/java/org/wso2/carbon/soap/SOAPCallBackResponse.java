@@ -21,7 +21,7 @@ import org.wso2.carbon.soap.impl.SOAPException;
 /**
  * Interface to handle the received response message
  */
-public interface CallBackResponse {
+public interface SOAPCallBackResponse {
 
     void handleResponseReceived(CarbonSOAPMessage carbonSOAPMessage);
 

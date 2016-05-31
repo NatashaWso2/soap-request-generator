@@ -92,7 +92,7 @@ public class Main {
         System.out.println(soapModel.generateSOAPEnvelope().toString());
 
 
-        SOAPModel soapModel2 = soapFactory.getSoapModel();
+        SOAPModel soapModel2 = soapFactory.getSoapModel("soap12");
 
         //Create the SOAP Envelope
         soapModel2.createSOAPEnvelope();

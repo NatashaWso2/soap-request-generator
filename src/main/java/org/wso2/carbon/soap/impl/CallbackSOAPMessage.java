@@ -18,10 +18,8 @@ package org.wso2.carbon.soap.impl;
 
 import org.wso2.carbon.messaging.CarbonCallback;
 import org.wso2.carbon.messaging.CarbonMessage;
-import org.wso2.carbon.soap.CallBackResponse;
-import org.xml.sax.SAXException;
+import org.wso2.carbon.soap.SOAPCallBackResponse;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
 
@@ -32,13 +30,13 @@ import java.util.List;
 public class CallbackSOAPMessage implements CarbonCallback {
 
     private CarbonSOAPMessage response;
-    private CallBackResponse callBackResponse;
+    private SOAPCallBackResponse SOAPCallBackResponse;
 
     public CallbackSOAPMessage() {
     }
 
-    public CallbackSOAPMessage(CallBackResponse callBackResponse) {
-        this.callBackResponse = callBackResponse;
+    public CallbackSOAPMessage(SOAPCallBackResponse SOAPCallBackResponse) {
+        this.SOAPCallBackResponse = SOAPCallBackResponse;
     }
 
     /**
@@ -53,7 +51,7 @@ public class CallbackSOAPMessage implements CarbonCallback {
         response = new CarbonSOAPMessage(bufferList);
 
         //Handle the received response message
-        callBackResponse.handleResponseReceived(response);
+        SOAPCallBackResponse.handleResponseReceived(response);
 
     }
 

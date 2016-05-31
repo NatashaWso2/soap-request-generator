@@ -39,12 +39,28 @@ public class SOAPModel {
     private SOAPEnvelope envelope;
     private DocumentBuilder docBuilder;
     private Document doc;
+    private String soapVersion;
+
+    protected SOAPModel(String soapVersion) throws SOAPException {
+        this.soapVersion = soapVersion;
+        envelope = new SOAPEnvelope(this);
+        docBuilder = createDocumentBuilder();
+        doc = docBuilder.newDocument();
+    }
 
 
     protected SOAPModel() throws SOAPException {
         envelope = new SOAPEnvelope(this);
         docBuilder = createDocumentBuilder();
         doc = docBuilder.newDocument();
+    }
+
+    /**
+     * Gets the SOAP version of the message
+     * @return soap version
+     */
+    public String getSoapVersion() {
+        return soapVersion;
     }
 
     /**
@@ -75,7 +91,6 @@ public class SOAPModel {
      */
     public SOAPEnvelope createSOAPEnvelope() throws SOAPException {
 
-        String soapVersion = "soap11";
         String namespaceURI = null;
         String encodingNSURI = null;
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {
@@ -156,7 +171,6 @@ public class SOAPModel {
      */
     public SOAPBody createSOAPBody() throws SOAPException {
 
-        String soapVersion = "soap11";
         String namespaceURI = null;
         SOAPBody soapBody = null;
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {
@@ -194,7 +208,6 @@ public class SOAPModel {
      */
     public SOAPBody createSOAPBody(Node payload) throws SOAPException {
 
-        String soapVersion = "soap11";
         String namespaceURI = null;
         SOAPBody soapBody = null;
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {
@@ -246,7 +259,6 @@ public class SOAPModel {
      */
     public SOAPHeader createSOAPHeader() throws SOAPException {
 
-        String soapVersion = "soap11";
         String namespaceURI = null;
         SOAPHeader soapHeader = null;
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {
@@ -284,7 +296,6 @@ public class SOAPModel {
      */
     public SOAPHeader createSOAPHeader(Node header) throws SOAPException {
 
-        String soapVersion = "soap11";
         String namespaceURI = null;
         SOAPHeader soapHeader = null;
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {
@@ -326,7 +337,6 @@ public class SOAPModel {
      */
     public SOAPHeader createSOAPHeader(NodeList headers) throws SOAPException {
 
-        String soapVersion = "soap11";
         String namespaceURI = null;
         SOAPHeader soapHeader = null;
         if (soapVersion.equals(Constants.SOAP11_VERSION)) {

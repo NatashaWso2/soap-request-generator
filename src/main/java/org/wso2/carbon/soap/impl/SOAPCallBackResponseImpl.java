@@ -16,7 +16,7 @@
 
 package org.wso2.carbon.soap.impl;
 
-import org.wso2.carbon.soap.CallBackResponse;
+import org.wso2.carbon.soap.SOAPCallBackResponse;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  * Handles the response message received
  */
-public class CallBackResponseImpl implements CallBackResponse {
+public class SOAPCallBackResponseImpl implements SOAPCallBackResponse {
     @Override
     public void handleResponseReceived(CarbonSOAPMessage carbonSOAPMessage) {
 
