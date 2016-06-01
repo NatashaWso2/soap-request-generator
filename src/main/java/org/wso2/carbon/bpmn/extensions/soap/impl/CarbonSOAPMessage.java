@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
 
+import org.wso2.carbon.bpmn.extensions.soap.constants.Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.SOAP12Constants;
 import org.wso2.carbon.messaging.CarbonMessage;
 import org.wso2.carbon.messaging.DefaultCarbonMessage;
-import org.wso2.carbon.soap.constants.Constants;
-import org.wso2.carbon.soap.constants.SOAP12Constants;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -28,6 +28,9 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *  SOAP message implementation from the Carbon Message.
+ */
 public class CarbonSOAPMessage extends DefaultCarbonMessage {
     private SOAPEnvelope soapEnvelope;
 
@@ -46,7 +49,7 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
     }
 
     /**
-     * Get the SOAP Envelope
+     * Get the SOAP Envelope.
      *
      * @return SOAP Envelope
      */
@@ -76,7 +79,7 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
     }
 
     /**
-     * Set the SOAP Envelope to the message body
+     * Set the SOAP Envelope to the message body.
      *
      * @param soapEnvelope
      */
@@ -87,11 +90,11 @@ public class CarbonSOAPMessage extends DefaultCarbonMessage {
     }
 
     /**
-     * Set the Header properties
+     * Set the Header properties.
      *
-     * @param HTTPTransportHeaders
+     * @param httpTransportHeaders
      */
-    public void setHeaderProperties(HTTPTransportHeaders HTTPTransportHeaders) {
-        setHeaders(HTTPTransportHeaders.getHeaders());
+    public void setHeaderProperties(HTTPTransportHeaders httpTransportHeaders) {
+        setHeaders(httpTransportHeaders.getHeaders());
     }
 }

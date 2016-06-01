@@ -14,24 +14,27 @@
  * limitations under the License.
  */
 
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
-import org.wso2.carbon.soap.SOAPCallBackResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.wso2.carbon.bpmn.extensions.soap.SOAPCallBackResponse;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
 
 /**
- * Handles the response message received
+ * Handles the response message received.
  */
 public class SOAPCallBackResponseImpl implements SOAPCallBackResponse {
+    private static final Logger log = LoggerFactory.getLogger(SOAPCallBackResponseImpl.class);
     @Override
     public void handleResponseReceived(CarbonSOAPMessage carbonSOAPMessage) {
 
         try {
-            System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());
-            System.out.println(carbonSOAPMessage.getSOAPEnvelope().getSoapModel().getSoapVersion());
-            // System.out.println(carbonSOAPMessage.getSOAPEnvelope().getSoapBody().toString());
+            log.info(carbonSOAPMessage.getSOAPEnvelope().toString());
+            log.info(carbonSOAPMessage.getSOAPEnvelope().getSoapModel().getSoapVersion());
+            log.info(carbonSOAPMessage.getSOAPEnvelope().getSoapBody().toString());
 
         } catch (IOException e) {
             new SOAPException("I/O Exception", e);

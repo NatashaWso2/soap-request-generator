@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
-import org.wso2.carbon.soap.constants.Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.Constants;
 
 /**
- * Factory class used to create SOAP Models
+ * Factory class used to create SOAP Models.
  */
 public class SOAPFactory {
 
     private SOAPModel soapModel;
 
     /**
-     * Gets a new instance of the SOAP Model used to create a SOAP Envelope
+     * Gets a new instance of the SOAP Model used to create a SOAP Envelope.
      *
      * @param soapVersion soap version to be used i.e. soap11 or soap12
      * @return new instance of the SOAP Model
@@ -37,7 +37,7 @@ public class SOAPFactory {
     }
 
     /**
-     * Gets a new instance of the SOAP Model used to create a SOAP Envelope
+     * Gets a new instance of the SOAP Model used to create a SOAP Envelope.
      *
      * @return new instance of the SOAP Model
      * @throws SOAPException
@@ -47,7 +47,7 @@ public class SOAPFactory {
     }
 
     /**
-     * Sets a SOAP Model to a the factory
+     * Sets a SOAP Model to a the factory.
      *
      * @param soapModel
      */

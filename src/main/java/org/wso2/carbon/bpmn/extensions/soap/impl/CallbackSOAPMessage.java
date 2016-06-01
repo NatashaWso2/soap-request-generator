@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
 
+import org.wso2.carbon.bpmn.extensions.soap.SOAPCallBackResponse;
 import org.wso2.carbon.messaging.CarbonCallback;
 import org.wso2.carbon.messaging.CarbonMessage;
-import org.wso2.carbon.soap.SOAPCallBackResponse;
 
 /**
  * Callback class used in request path to execute in response path.
@@ -27,13 +27,13 @@ import org.wso2.carbon.soap.SOAPCallBackResponse;
 public class CallbackSOAPMessage implements CarbonCallback {
 
     private CarbonSOAPMessage response;
-    private SOAPCallBackResponse SOAPCallBackResponse;
+    private SOAPCallBackResponse soapCallBackResponse;
 
     public CallbackSOAPMessage() {
     }
 
-    public CallbackSOAPMessage(SOAPCallBackResponse SOAPCallBackResponse) {
-        this.SOAPCallBackResponse = SOAPCallBackResponse;
+    public CallbackSOAPMessage(SOAPCallBackResponse soapCallBackResponse) {
+        this.soapCallBackResponse = soapCallBackResponse;
     }
 
     /**
@@ -47,12 +47,12 @@ public class CallbackSOAPMessage implements CarbonCallback {
         response = new CarbonSOAPMessage(cMsg);
 
         //Handle the received response message
-        SOAPCallBackResponse.handleResponseReceived(response);
+        soapCallBackResponse.handleResponseReceived(response);
 
     }
 
     /**
-     * Gets the response from the response path
+     * Gets the response from the response path.
      *
      * @return CarbonSOAPMessage
      */

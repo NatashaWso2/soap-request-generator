@@ -13,27 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
-import org.wso2.carbon.soap.constants.Constants;
-import org.wso2.carbon.soap.constants.SOAP11Constants;
-import org.wso2.carbon.soap.constants.SOAP12Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.SOAP11Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.SOAP12Constants;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Defines the transport binding rules specific to each soap version
+ * Defines the transport binding rules specific to each soap version.
  */
 public class HTTPTransportHeaders {
     private Map<String, String> headers = new ConcurrentHashMap<String, String>();
 
-    /**
-     * Sets the transport binding rules specific to each soap version
-     *
-     * @return properties which contains transport binding rules
-     * @throws Exception
-     */
     public HTTPTransportHeaders(SOAPModel soapModel) throws SOAPException {
 
         String soapVersion = soapModel.getSoapVersion();
@@ -48,7 +42,7 @@ public class HTTPTransportHeaders {
     }
 
     /**
-     * Get the HTTP transport headers
+     * Get the HTTP transport headers.
      *
      * @return List of headers
      */
@@ -57,7 +51,7 @@ public class HTTPTransportHeaders {
     }
 
     /**
-     * Set the HTTP transport headers
+     * Set the HTTP transport headers.
      *
      * @param headers List of Headers
      */
@@ -66,7 +60,7 @@ public class HTTPTransportHeaders {
     }
 
     /**
-     * Add a new HTTP transport header field
+     * Add a new HTTP transport header field.
      * NOTE : Either the Content-Length or Transfer-Encoding should be specified when setting the headers.
      * Add the Host and the Connection fields when adding the headers
      *
@@ -78,7 +72,7 @@ public class HTTPTransportHeaders {
     }
 
     /**
-     * Add the value for the SOAPAction field
+     * Add the value for the SOAPAction field.
      *
      * @param soapAction
      */

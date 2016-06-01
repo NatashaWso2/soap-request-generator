@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.constants;
+package org.wso2.carbon.bpmn.extensions.soap.constants;
 
 /**
- * constants specific to SOAP 1.2
+ * constants specific to SOAP 1.2.
  */
 public interface SOAP12Constants extends Constants {
 
@@ -30,25 +30,13 @@ public interface SOAP12Constants extends Constants {
 
     //SOAP Fault Codes
 
-    /**
-     * <env:Code>
-     * <env:Value>env:Sender</env:Value>
-     * <env:Subcode>
-     * <env:Value>mycode:SomeError</env:Value>
-     * </env:Subcode>
-     * </env:Code>
-     */
 
     static final String SOAP_FAULT_CODE = "Code";
     static final String SOAP_FAULT_SUBCODE = "Subcode";
     static final String SOAP_FAULT_VALUE = "Value";
 
     // SOAP Fault Reason
-    /**
-     * <env:Reason>
-     * <env:Text xml:lang="en-US">Processing error</env:Text>
-     * </env:Reason>
-     */
+
     static final String SOAP_FAULT_REASON = "Reason";
     static final String SOAP_FAULT_TEXT = "Text";
     static final String SOAP_FAULT_TEXT_LANG = "lang";
@@ -56,14 +44,7 @@ public interface SOAP12Constants extends Constants {
     static final String SOAP_FAULT_TEXT_LANG_NAMESPACE = "en-US";
 
     // SOAP Fault Detail
-    /**
-     * <env:Detail>
-     * <e:myFaultDetails xmlns:e="http://myexample.org/faults" >
-     * <e:message>Invalid credit card details</e:message>
-     * <e:errorcode>999</e:errorcode>
-     * </e:myFaultDetails>
-     * </env:Detail>
-     */
+
     static final String SOAP_FAULT_DETAIL = "Detail";
 
     // SOAP Fault Role

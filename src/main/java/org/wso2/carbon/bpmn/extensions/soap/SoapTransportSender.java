@@ -13,20 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.wso2.carbon;
+package org.wso2.carbon.bpmn.extensions.soap;
 
 import org.w3c.dom.Node;
+import org.wso2.carbon.bpmn.extensions.soap.impl.CallbackSOAPMessage;
+import org.wso2.carbon.bpmn.extensions.soap.impl.CarbonSOAPMessage;
+import org.wso2.carbon.bpmn.extensions.soap.impl.HTTPTransportHeaders;
+import org.wso2.carbon.bpmn.extensions.soap.impl.NodeList;
+import org.wso2.carbon.bpmn.extensions.soap.impl.SOAPCallBackResponseImpl;
+import org.wso2.carbon.bpmn.extensions.soap.impl.SOAPEnvelope;
+import org.wso2.carbon.bpmn.extensions.soap.impl.SOAPException;
+import org.wso2.carbon.bpmn.extensions.soap.impl.SOAPFactory;
+import org.wso2.carbon.bpmn.extensions.soap.impl.SOAPModel;
 import org.wso2.carbon.messaging.Constants;
 import org.wso2.carbon.messaging.MessageProcessorException;
-import org.wso2.carbon.soap.impl.SOAPCallBackResponseImpl;
-import org.wso2.carbon.soap.impl.CallbackSOAPMessage;
-import org.wso2.carbon.soap.impl.CarbonSOAPMessage;
-import org.wso2.carbon.soap.impl.HTTPTransportHeaders;
-import org.wso2.carbon.soap.impl.NodeList;
-import org.wso2.carbon.soap.impl.SOAPEnvelope;
-import org.wso2.carbon.soap.impl.SOAPException;
-import org.wso2.carbon.soap.impl.SOAPFactory;
-import org.wso2.carbon.soap.impl.SOAPModel;
 import org.wso2.carbon.transport.http.netty.config.SenderConfiguration;
 import org.wso2.carbon.transport.http.netty.sender.NettySender;
 import org.xml.sax.SAXException;
@@ -34,10 +34,9 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 
 /**
- * Transport Sender for SOAP using netty
+ * Transport Sender for SOAP using netty.
  */
 public class SoapTransportSender {
-
     public static void main(String[] args) throws SOAPException, IOException, SAXException {
         SenderConfiguration senderConfiguration = new SenderConfiguration("netty-gw");
         NettySender nettySender = new NettySender(senderConfiguration);
@@ -47,15 +46,19 @@ public class SoapTransportSender {
         carbonSOAPMessage.setProperty(Constants.HOST, "localhost");
         carbonSOAPMessage.setProperty(Constants.PORT, 9764);
         carbonSOAPMessage.setProperty(Constants.TO, "/services/HelloService");
-        carbonSOAPMessage.setProperty(org.wso2.carbon.transport.http.netty.common.Constants.IS_DISRUPTOR_ENABLE, "true");
+        carbonSOAPMessage.setProperty(org.wso2.carbon.transport.http.netty.common.Constants.IS_DISRUPTOR_ENABLE,
+                "true");
 
          //Creating the soap envelope
         SOAPFactory soapFactory = new SOAPFactory();
         SOAPModel soapModel = soapFactory.getSoapModel();
         soapModel.createSOAPEnvelope();
-        soapModel.createSOAPBody(soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>Hello</TestPart></ns1:hello>"));
-        Node headerBlock1 = soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER11</TestPart></ns1:hello>");
-        Node headerBlock2 = soapModel.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'><TestPart>HEADER22</TestPart></ns2:h>");
+        soapModel.createSOAPBody(soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'>" +
+                "<TestPart>Hello</TestPart></ns1:hello>"));
+        Node headerBlock1 = soapModel.createNode("<ns1:hello xmlns:ns1='http://ode/bpel/unit-test.wsdl'>" +
+                "<TestPart>HEADER11</TestPart></ns1:hello>");
+        Node headerBlock2 = soapModel.createNode("<ns2:h xmlns:ns2='http://ode/bpel/unit-test.wsdl'>" +
+                "<TestPart>HEADER22</TestPart></ns2:h>");
 
         NodeList headers = new NodeList();
         headers.addNode(headerBlock1);
@@ -81,9 +84,6 @@ public class SoapTransportSender {
             SOAPCallBackResponseImpl callBackResponse = new SOAPCallBackResponseImpl();
             CallbackSOAPMessage callbackSOAPMessage = new CallbackSOAPMessage(callBackResponse);
             nettySender.send(carbonSOAPMessage, callbackSOAPMessage);
-            /*carbonSOAPMessage = callbackSOAPMessage.getResponse();
-            System.out.println(carbonSOAPMessage.getSOAPEnvelope().toString());*/
-
 
         } catch (MessageProcessorException e) {
             throw new SOAPException("Message Processor Exception " , e);

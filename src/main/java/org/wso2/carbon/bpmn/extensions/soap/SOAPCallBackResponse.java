@@ -13,13 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.wso2.carbon.soap;
+package org.wso2.carbon.bpmn.extensions.soap;
 
-import org.wso2.carbon.soap.impl.CarbonSOAPMessage;
-import org.wso2.carbon.soap.impl.SOAPException;
+import org.wso2.carbon.bpmn.extensions.soap.impl.CarbonSOAPMessage;
 
 /**
- * Interface to handle the received response message
+ * Interface to handle the received response message.
  */
 public interface SOAPCallBackResponse {
 

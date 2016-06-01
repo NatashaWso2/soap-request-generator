@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -26,8 +26,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 
+
 /**
- * Creates the SOAP body of the SOAP Envelope
+ * Creates the SOAP body of the SOAP Envelope.
  */
 public class SOAPBody {
 
@@ -43,7 +44,7 @@ public class SOAPBody {
     }
 
     /**
-     * Gets the SOAP Body element
+     * Gets the SOAP Body element.
      *
      * @return SOAP Body element
      */
@@ -53,7 +54,7 @@ public class SOAPBody {
     }
 
     /**
-     * Sets the SOAP Body element
+     * Sets the SOAP Body element.
      *
      * @param soapBodyElement
      */
@@ -62,7 +63,7 @@ public class SOAPBody {
     }
 
     /**
-     * Gets the payload of the SOAP Body
+     * Gets the payload of the SOAP Body.
      *
      * @return the payload
      */
@@ -71,7 +72,7 @@ public class SOAPBody {
     }
 
     /**
-     * Sets the payload to SOAP Body
+     * Sets the payload to SOAP Body.
      *
      * @param payload
      */
@@ -81,7 +82,7 @@ public class SOAPBody {
     }
 
     /**
-     * Deletes the payload from the SOAP Body
+     * Deletes the payload from the SOAP Body.
      */
     public void deletePayload() {
 
@@ -91,7 +92,7 @@ public class SOAPBody {
     }
 
     /**
-     * Returns the SOAP Body as a string
+     * Returns the SOAP Body as a string.
      *
      * @return SOAP Body as a string
      */

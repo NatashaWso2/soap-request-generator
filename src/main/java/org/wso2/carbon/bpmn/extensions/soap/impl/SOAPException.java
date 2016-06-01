@@ -13,31 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.constants;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
 /**
- * constants used by both SOAP 1.1 and SOAP 1.2 when creating the SOAP Envelope
+ * Exception class to catch SOAP exceptions.
  */
-public interface Constants {
+public class SOAPException extends Exception {
 
+    public SOAPException(String msg, Exception e) {
+        super(msg, e);
+    }
 
-    static final String SOAP_NAMESPACE_PREFIX = "soapenv";
-
-    static final String SOAP_ENVELOPE = "Envelope";
-
-    static final String HEADER = "Header";
-
-    static final String BODY = "Body";
-
-    static final String SOAP_FAULT = "Fault";
-
-    static final String ENCODING_STYLE = "encodingStyle";
-
-    static final String MUST_UNDERSTAND = "mustUnderstand";
-
-    static final String SOAP11_VERSION = "soap11";
-
-    static final String SOAP12_VERSION = "soap12";
-
-
+    public SOAPException(String msg) {
+        super(msg);
+    }
 }

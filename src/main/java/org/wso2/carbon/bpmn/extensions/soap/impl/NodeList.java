@@ -1,3 +1,4 @@
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 /**
  * Copyright (c) 2015 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  * <p/>
@@ -13,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+
 
 import org.w3c.dom.Node;
 
@@ -21,13 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implements the NodeList to store nodes
+ * Implements the NodeList to store nodes.
  */
 public class NodeList implements org.w3c.dom.NodeList {
     private List<Node> nodeList = new ArrayList<Node>();
 
     /**
-     * Gets the node at the given index
+     * Gets the node at the given index.
      *
      * @param index
      * @return node
@@ -38,7 +39,7 @@ public class NodeList implements org.w3c.dom.NodeList {
     }
 
     /**
-     * Gets the size of the NodeList
+     * Gets the size of the NodeList.
      *
      * @return length/size
      */
@@ -48,7 +49,7 @@ public class NodeList implements org.w3c.dom.NodeList {
     }
 
     /**
-     * Add a node to the NodeList
+     * Add a node to the NodeList.
      *
      * @param node
      */

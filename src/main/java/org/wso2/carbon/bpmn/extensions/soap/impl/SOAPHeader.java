@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -26,8 +26,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 
+
 /**
- * Creates the SOAP Header of the SOAP Envelope
+ * Creates the SOAP Header of the SOAP Envelope.
  */
 public class SOAPHeader {
 
@@ -43,7 +44,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Gets the SOAP Header element
+     * Gets the SOAP Header element.
      *
      * @return SOAP Header element
      */
@@ -53,7 +54,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Sets the SOAP Header element
+     * Sets the SOAP Header element.
      *
      * @param soapHeaderElement
      */
@@ -62,7 +63,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Gets the header at the specified index
+     * Gets the header at the specified index.
      *
      * @param index
      * @return header at the specified index
@@ -72,7 +73,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Sets the header to the SOAP Header
+     * Sets the header to the SOAP Header.
      *
      * @param header
      */
@@ -82,7 +83,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Get all the headers i.e. all the header blocks from the SOAP Header
+     * Get all the headers i.e. all the header blocks from the SOAP Header.
      *
      * @return nodeList with all the headers
      */
@@ -97,7 +98,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Sets the headers to the SOAP Header
+     * Sets the headers to the SOAP Header.
      *
      * @param headers
      */
@@ -109,7 +110,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Deletes the specified header
+     * Deletes the specified header.
      *
      * @param node
      */
@@ -118,7 +119,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Deletes the header at the specified index
+     * Deletes the header at the specified index.
      *
      * @param index
      */
@@ -127,7 +128,7 @@ public class SOAPHeader {
     }
 
     /**
-     * Returns the SOAP Header as a string
+     * Returns the SOAP Header as a string.
      *
      * @return SOAP Header as a string
      */

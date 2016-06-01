@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon;
 
 import org.w3c.dom.Node;
-import org.wso2.carbon.soap.impl.NodeList;
-import org.wso2.carbon.soap.impl.SOAPFactory;
-import org.wso2.carbon.soap.impl.SOAPModel;
+import org.wso2.carbon.bpmn.extensions.soap.impl.NodeList;
+import org.wso2.carbon.bpmn.extensions.soap.impl.SOAPFactory;
+import org.wso2.carbon.bpmn.extensions.soap.impl.SOAPModel;
 
 public class Main {
 

@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.constants;
+package org.wso2.carbon.bpmn.extensions.soap.constants;
 
 /**
- * constants specific to SOAP 1.1
+ * constants specific to SOAP 1.1.
  */
 public interface SOAP11Constants extends Constants {
 

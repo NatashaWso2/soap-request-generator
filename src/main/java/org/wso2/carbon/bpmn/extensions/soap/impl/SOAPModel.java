@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.wso2.carbon.soap.constants.Constants;
-import org.wso2.carbon.soap.constants.SOAP11Constants;
-import org.wso2.carbon.soap.constants.SOAP12Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.SOAP11Constants;
+import org.wso2.carbon.bpmn.extensions.soap.constants.SOAP12Constants;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -31,8 +31,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 
+
 /**
- * Model used to build the SOAP envelope which contains all the methods
+ * Model used to build the SOAP envelope which contains all the methods.
  */
 public class SOAPModel {
 
@@ -49,7 +50,7 @@ public class SOAPModel {
     }
 
     /**
-     * Gets the SOAP version of the message
+     * Gets the SOAP version of the message.
      *
      * @return soap version
      */
@@ -58,7 +59,7 @@ public class SOAPModel {
     }
 
     /**
-     * Creates the Document Builder object
+     * Creates the Document Builder object.
      *
      * @return documentbuilder
      * @throws SOAPException
@@ -78,7 +79,7 @@ public class SOAPModel {
     }
 
     /**
-     * Creates the SOAP Envelope
+     * Creates the SOAP Envelope.
      *
      * @return SOAP Envelope
      * @throws SOAPException
@@ -110,7 +111,7 @@ public class SOAPModel {
     }
 
     /**
-     * Generates the entire SOAP Request/Envelope
+     * Generates the entire SOAP Request/Envelope.
      *
      * @return SOAP Request/Envelope
      * @throws SOAPException
@@ -136,7 +137,7 @@ public class SOAPModel {
     }
 
     /**
-     * Creates the node object when attaching elements to the SOAP Body and Header
+     * Creates the node object when attaching elements to the SOAP Body and Header.
      *
      * @param payload
      * @return node
@@ -158,7 +159,7 @@ public class SOAPModel {
     }
 
     /**
-     * Creates the SOAP Body without elements
+     * Creates the SOAP Body without elements.
      *
      * @return SOAP Body
      * @throws SOAPException
@@ -194,7 +195,7 @@ public class SOAPModel {
     }
 
     /**
-     * Creates the SOAP Body by attaching the payload
+     * Creates the SOAP Body by attaching the payload.
      *
      * @param payload element/request payload to be attached
      * @return SOAP Body
@@ -236,7 +237,7 @@ public class SOAPModel {
     }
 
     /**
-     * Gets the SOAP Envelope
+     * Gets the SOAP Envelope.
      *
      * @return SOAP Envelope
      */
@@ -246,7 +247,7 @@ public class SOAPModel {
 
 
     /**
-     * Creates the SOAP Header without elements
+     * Creates the SOAP Header without elements.
      *
      * @return SOAP Header
      * @throws SOAPException
@@ -282,7 +283,7 @@ public class SOAPModel {
     }
 
     /**
-     * Creates the SOAP Header by attaching the header
+     * Creates the SOAP Header by attaching the header.
      *
      * @param header
      * @return SOAP Header
@@ -323,7 +324,7 @@ public class SOAPModel {
     }
 
     /**
-     * Creates the SOAP Header by attaching the header blocks
+     * Creates the SOAP Header by attaching the header blocks.
      *
      * @param headers
      * @return SOAP Header
@@ -366,13 +367,13 @@ public class SOAPModel {
     }
 
     /**
-     * Creating the SOAP Envelope when a string is given
+     * Creating the SOAP Envelope when a string is given.
      *
      * @param messageBody
      * @return SOAP Envelope
      * @throws SOAPException
-     * @throws IOException
-     * @throws SAXException
+     * @throws java.io.IOException
+     * @throws org.xml.sax.SAXException
      */
     public SOAPEnvelope createSOAPEnvelope(String messageBody) throws SOAPException, IOException, SAXException {
         doc = docBuilder.parse(new InputSource(new StringReader(messageBody)));

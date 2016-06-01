@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.carbon.soap.impl;
+package org.wso2.carbon.bpmn.extensions.soap.impl;
 
 import org.w3c.dom.Element;
 
@@ -25,8 +25,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 
+
 /**
- * Creates the SOAP Envelope i.e. the SOAP request payload
+ * Creates the SOAP Envelope i.e. the SOAP request payload.
  */
 public class SOAPEnvelope {
 
@@ -46,7 +47,7 @@ public class SOAPEnvelope {
     }
 
     /**
-     * Gets the SOAP Envelope element
+     * Gets the SOAP Envelope element.
      *
      * @return SOAP Envelope element
      */
@@ -55,7 +56,7 @@ public class SOAPEnvelope {
     }
 
     /**
-     * Sets the SOAP Envelope element
+     * Sets the SOAP Envelope element.
      *
      * @param soapEnvelopeElement
      */
@@ -65,7 +66,7 @@ public class SOAPEnvelope {
     }
 
     /**
-     * Gets the SOAP Body element from the SOAP Envelope
+     * Gets the SOAP Body element from the SOAP Envelope.
      *
      * @return SOAP Body
      */
@@ -75,7 +76,7 @@ public class SOAPEnvelope {
     }
 
     /**
-     * Sets the SOAP Body element to the SOAP Envelope
+     * Sets the SOAP Body element to the SOAP Envelope.
      *
      * @param soapBody
      */
@@ -85,7 +86,7 @@ public class SOAPEnvelope {
     }
 
     /**
-     * Gets the SOAP Header element from the SOAP Envelope
+     * Gets the SOAP Header element from the SOAP Envelope.
      *
      * @return SOAP Header
      */
@@ -95,7 +96,7 @@ public class SOAPEnvelope {
     }
 
     /**
-     * Sets the SOAP Header element to the SOAP Envelope
+     * Sets the SOAP Header element to the SOAP Envelope.
      *
      * @param soapHeader
      */
@@ -110,7 +111,7 @@ public class SOAPEnvelope {
     }
 
     /**
-     * Returns the SOAP Envelope as a string
+     * Returns the SOAP Envelope as a string.
      *
      * @return SOAP Envelope as a string
      */
